@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="img_margin_top">48dp</dimen>
+    <dimen name="padding_bar_top">0dp</dimen>
+</resources>
