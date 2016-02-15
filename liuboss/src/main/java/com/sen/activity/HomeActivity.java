@@ -2,6 +2,9 @@ package com.sen.activity;
 
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.FrameLayout;
 
 import com.sen.base.BaseActivity;
 import com.sen.liuboss.R;
+import com.sen.uitls.FragmentFactory;
 import com.sen.uitls.ResourcesUtils;
 import com.sen.uitls.StatusBarCompat;
 
@@ -19,6 +23,7 @@ import butterknife.ButterKnife;
 public class HomeActivity extends BaseActivity {
 
 
+    private static final String FLAG_HOME = "fragment_home";
     @Bind(R.id.home_layout_content)
     FrameLayout home_layout_content;
     @Bind(R.id.layout_buttom_tab)
@@ -30,33 +35,58 @@ public class HomeActivity extends BaseActivity {
     int tabItemDrawableSelected[];
     private int tabCount;
 
+    Fragment mCurrentFragment;
+    FragmentManager mFragmentManager;
+
 
     public void initView() {
         setContentView(R.layout.activity_home);
         StatusBarCompat.compat(this, ResourcesUtils.getResColor(this, R.color.colorPrimaryDark));
         ButterKnife.bind(this);
-
+        initFragmentSelect();
         initTabView();
 
     }
 
-    private void initTabView() {
+    @Override
+    protected void initData() {
+        super.initData();
         tabTiles = ResourcesUtils.getStringArray(this, R.array.tabItemName);
         tabItemDrawableNormal = new int[]{R.drawable.ic_tab_home_normal, R.drawable.ic_tab_classification_normal, R.drawable.ic_tab_car_normal, R.drawable.ic_tab_personal_normal};
         tabItemDrawableSelected = new int[]{R.drawable.ic_tab_home_selected, R.drawable.ic_tab_classification_selected, R.drawable.ic_tab_car_selected, R.drawable.ic_tab_personal_selected};
+    }
+
+    private void initFragmentSelect() {
+        mFragmentManager = getSupportFragmentManager();
+        //Home is selected
+        FragmentFactory.createFragment(0);
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        mCurrentFragment = FragmentFactory.createFragment(0);
+        transaction.add(R.id.home_layout_content,mCurrentFragment  , tabTiles[0]).commit();
+
+    }
+
+    private void initTabView() {
+
+
+
 
         tabCount = tabItemDrawableNormal.length;
         for (int i = 0; i < tabCount; i++) {
             TabLayout.Tab tab = layout_buttom_tab.newTab();
             tab.setCustomView(getTabView(tabItemDrawableNormal[i], tabTiles[i]));
-            layout_buttom_tab.addTab(tab, i, false);
+            layout_buttom_tab.addTab(tab,i);
+
         }
+
         layout_buttom_tab.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int positionTab = tab.getPosition();
                 AppCompatTextView textView = (AppCompatTextView) tab.getCustomView();
                 changeSelecteTabColor(textView, tabItemDrawableSelected[positionTab], true);
+                switchContent(mCurrentFragment, FragmentFactory.createFragment(positionTab),tabTiles[positionTab]);
+
             }
 
             @Override
@@ -71,7 +101,12 @@ public class HomeActivity extends BaseActivity {
 
             }
         });
+        //不知为啥 0 的不会调用setOnTabSelectedListener 的方法
+      //  layout_buttom_tab.getTabAt(0).select();
 
+
+        AppCompatTextView textView = (AppCompatTextView)  layout_buttom_tab.getTabAt(0).getCustomView();;
+        changeSelecteTabColor(textView, tabItemDrawableSelected[0], true);
 
     }
 
@@ -82,6 +117,7 @@ public class HomeActivity extends BaseActivity {
 
     }
 
+    //自定义TabView
     public View getTabView(int id, String text) {
         View view = LayoutInflater.from(this).inflate(R.layout.home_buttom_item_tab, null);
         AppCompatTextView textView = (AppCompatTextView) view.findViewById(R.id.tab_name);
@@ -98,6 +134,19 @@ public class HomeActivity extends BaseActivity {
         topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
         textView.setCompoundDrawables(null, topDrawable, null, null);
         textView.setSelected(isSelected);
+    }
+
+
+    public void switchContent(Fragment from, Fragment to, String flag) {
+        if (mCurrentFragment != to) {
+            mCurrentFragment = to;
+            FragmentTransaction transaction = mFragmentManager.beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+            if (!to.isAdded()) {    // 先判断是否被add过
+                transaction.hide(from).add(R.id.home_layout_content, to, flag).commit(); // 隐藏当前的fragment，add下一个到Activity中
+            } else {
+                transaction.hide(from).show(to).commit(); // 隐藏当前的fragment，显示下一个
+            }
+        }
     }
 
 
