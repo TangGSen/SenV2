@@ -9,8 +9,8 @@
     <include
         android:id="@+id/app_bar"
         layout="@layout/content_app_bar" />
-    <com.sen.widget.NoSwitchingViewPager
-        android:id="@+id/viewPager_content"
+    <FrameLayout
+        android:id="@+id/home_layout_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

@@ -1,15 +1,16 @@
 package com.sen.activity;
 
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
 
-import com.sen.adapter.HomeActFragAdpter;
 import com.sen.base.BaseActivity;
 import com.sen.liuboss.R;
 import com.sen.uitls.ResourcesUtils;
 import com.sen.uitls.StatusBarCompat;
-import com.sen.widget.NoSwitchingViewPager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -18,9 +19,8 @@ import butterknife.ButterKnife;
 public class HomeActivity extends BaseActivity {
 
 
-
-    @Bind(R.id.viewPager_content)
-    NoSwitchingViewPager viewPager_content;
+    @Bind(R.id.home_layout_content)
+    FrameLayout home_layout_content;
     @Bind(R.id.layout_buttom_tab)
     TabLayout layout_buttom_tab;
     //tab item name
@@ -33,7 +33,7 @@ public class HomeActivity extends BaseActivity {
 
     public void initView() {
         setContentView(R.layout.activity_home);
-        StatusBarCompat.compat(this,ResourcesUtils.getResColor(this,R.color.colorPrimaryDark));
+        StatusBarCompat.compat(this, ResourcesUtils.getResColor(this, R.color.colorPrimaryDark));
         ButterKnife.bind(this);
 
         initTabView();
@@ -41,50 +41,37 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initTabView() {
-
         tabTiles = ResourcesUtils.getStringArray(this, R.array.tabItemName);
         tabItemDrawableNormal = new int[]{R.drawable.ic_tab_home_normal, R.drawable.ic_tab_classification_normal, R.drawable.ic_tab_car_normal, R.drawable.ic_tab_personal_normal};
         tabItemDrawableSelected = new int[]{R.drawable.ic_tab_home_selected, R.drawable.ic_tab_classification_selected, R.drawable.ic_tab_car_selected, R.drawable.ic_tab_personal_selected};
 
-
-        final HomeActFragAdpter fragAdapter = new HomeActFragAdpter(getSupportFragmentManager(), this, tabTiles, tabItemDrawableNormal);
-        viewPager_content.setAdapter(fragAdapter);
-        layout_buttom_tab.setupWithViewPager(viewPager_content);
-        tabCount = layout_buttom_tab.getTabCount();
+        tabCount = tabItemDrawableNormal.length;
         for (int i = 0; i < tabCount; i++) {
-            TabLayout.Tab tab = layout_buttom_tab.getTabAt(i);
-            if (tab != null) {
-                tab.setCustomView(fragAdapter.getTabView(i));
-            }
+            TabLayout.Tab tab = layout_buttom_tab.newTab();
+            tab.setCustomView(getTabView(tabItemDrawableNormal[i], tabTiles[i]));
+            layout_buttom_tab.addTab(tab, i, false);
         }
-        viewPager_content.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        layout_buttom_tab.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+            public void onTabSelected(TabLayout.Tab tab) {
+                int positionTab = tab.getPosition();
+                AppCompatTextView textView = (AppCompatTextView) tab.getCustomView();
+                changeSelecteTabColor(textView, tabItemDrawableSelected[positionTab], true);
             }
 
             @Override
-            public void onPageSelected(int position) {
-                for (int i = 0; i < tabCount; i++) {
-                    TabLayout.Tab tab = layout_buttom_tab.getTabAt(i);
-                    AppCompatTextView textView = (AppCompatTextView) tab.getCustomView();
-                    if (i == position) {
-                       fragAdapter.changeSelecteTabColor(textView,tabItemDrawableSelected[i],true);
-                    } else {
-                        fragAdapter.changeSelecteTabColor(textView,tabItemDrawableNormal[i],false);
-                    }
-
-                }
-
+            public void onTabUnselected(TabLayout.Tab tab) {
+                int positionTab = tab.getPosition();
+                AppCompatTextView textView = (AppCompatTextView) tab.getCustomView();
+                changeSelecteTabColor(textView, tabItemDrawableNormal[positionTab], false);
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
-        viewPager_content.setCurrentItem(0);
-        fragAdapter.changeSelecteTabColor((AppCompatTextView)layout_buttom_tab.getTabAt(0).getCustomView(),tabItemDrawableSelected[0],true);
+
 
     }
 
@@ -93,6 +80,25 @@ public class HomeActivity extends BaseActivity {
         super.initActionBar();
 
 
-
     }
+
+    public View getTabView(int id, String text) {
+        View view = LayoutInflater.from(this).inflate(R.layout.home_buttom_item_tab, null);
+        AppCompatTextView textView = (AppCompatTextView) view.findViewById(R.id.tab_name);
+        //设置图片
+        Drawable topDrawable = ResourcesUtils.getResDrawable(this, id);
+        topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+        textView.setCompoundDrawables(null, topDrawable, null, null);
+        textView.setText(text);
+        return view;
+    }
+
+    public void changeSelecteTabColor(AppCompatTextView textView, int drawableId, boolean isSelected) {
+        Drawable topDrawable = ResourcesUtils.getResDrawable(this, drawableId);
+        topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+        textView.setCompoundDrawables(null, topDrawable, null, null);
+        textView.setSelected(isSelected);
+    }
+
+
 }
