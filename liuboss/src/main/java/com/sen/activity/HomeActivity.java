@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
 public class HomeActivity extends BaseActivity {
 
 
-    private static final String FLAG_HOME = "fragment_home";
     @Bind(R.id.home_layout_content)
     FrameLayout home_layout_content;
     @Bind(R.id.layout_buttom_tab)
