@@ -61,20 +61,16 @@ public class HomeActivity extends BaseActivity {
         FragmentFactory.createFragment(0);
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         mCurrentFragment = FragmentFactory.createFragment(0);
-        transaction.add(R.id.home_layout_content,mCurrentFragment  , tabTiles[0]).commit();
+        transaction.add(R.id.home_layout_content, mCurrentFragment, tabTiles[0]).commit();
 
     }
 
     private void initTabView() {
-
-
-
-
         tabCount = tabItemDrawableNormal.length;
         for (int i = 0; i < tabCount; i++) {
             TabLayout.Tab tab = layout_buttom_tab.newTab();
             tab.setCustomView(getTabView(tabItemDrawableNormal[i], tabTiles[i]));
-            layout_buttom_tab.addTab(tab,i);
+            layout_buttom_tab.addTab(tab, i);
 
         }
 
@@ -84,7 +80,7 @@ public class HomeActivity extends BaseActivity {
                 int positionTab = tab.getPosition();
                 AppCompatTextView textView = (AppCompatTextView) tab.getCustomView();
                 changeSelecteTabColor(textView, tabItemDrawableSelected[positionTab], true);
-                switchContent(mCurrentFragment, FragmentFactory.createFragment(positionTab),tabTiles[positionTab]);
+                switchContent(mCurrentFragment, FragmentFactory.createFragment(positionTab), tabTiles[positionTab]);
 
             }
 
@@ -101,10 +97,11 @@ public class HomeActivity extends BaseActivity {
             }
         });
         //不知为啥 0 的不会调用setOnTabSelectedListener 的方法
-      //  layout_buttom_tab.getTabAt(0).select();
+        //  layout_buttom_tab.getTabAt(0).select();
 
 
-        AppCompatTextView textView = (AppCompatTextView)  layout_buttom_tab.getTabAt(0).getCustomView();;
+        AppCompatTextView textView = (AppCompatTextView) layout_buttom_tab.getTabAt(0).getCustomView();
+        ;
         changeSelecteTabColor(textView, tabItemDrawableSelected[0], true);
 
     }
