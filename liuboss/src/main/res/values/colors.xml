@@ -17,6 +17,10 @@
     <color name="divider">#B6B6B6</color>
     <color name="tab_bgcolor">#FFFFFF</color>
 
+    <color name="common_grey_line_color">#dfdfdf</color>
+    <color name="common_orange_color">#FE812C</color>
+    <color name="common_orange_pressed_color">#E96F1B</color>
+
 
 
 </resources>
