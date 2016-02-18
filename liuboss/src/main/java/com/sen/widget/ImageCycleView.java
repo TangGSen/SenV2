@@ -122,14 +122,14 @@ public class ImageCycleView extends LinearLayout{
             mImageViews[i] = mImageView;
             if (i == 0) {
                 if (this.stype == 1)
-                    mImageViews[i].setBackgroundResource(R.drawable.autoscrollview_dots_pressed);
+                    mImageViews[i].setBackgroundResource(R.drawable.head_spot_normal);
                 else
-                    mImageViews[i].setBackgroundResource(R.mipmap.cicle_banner_dian_focus);
+                    mImageViews[i].setBackgroundResource(R.drawable.head_spot_selected);
             } else {
                 if (this.stype == 1)
-                    mImageViews[i].setBackgroundResource(R.drawable.autoscrollview_dots_unpressed);
+                    mImageViews[i].setBackgroundResource(R.drawable.head_spot_normal);
                 else
-                    mImageViews[i].setBackgroundResource(R.mipmap.cicle_banner_dian_blur);
+                    mImageViews[i].setBackgroundResource(R.drawable.head_spot_selected);
             }
             viewGroup.addView(mImageViews[i]);
         }
@@ -214,15 +214,15 @@ public class ImageCycleView extends LinearLayout{
             // 设置当前显示的图片
             // 设置图片滚动指示器背
             if (stype == 1)
-                mImageViews[index].setBackgroundResource(R.drawable.autoscrollview_dots_pressed);
+                mImageViews[index].setBackgroundResource(R.drawable.head_spot_selected);
             else
-                mImageViews[index].setBackgroundResource(R.mipmap.cicle_banner_dian_focus);
+                mImageViews[index].setBackgroundResource(R.drawable.head_spot_normal);
             for (int i = 0; i < mImageViews.length; i++) {
                 if (index != i) {
                     if (stype == 1)
-                        mImageViews[i].setBackgroundResource(R.drawable.autoscrollview_dots_unpressed);
+                        mImageViews[i].setBackgroundResource(R.drawable.head_spot_selected);
                     else
-                        mImageViews[i].setBackgroundResource(R.mipmap.cicle_banner_dian_blur);
+                        mImageViews[i].setBackgroundResource(R.drawable.head_spot_normal);
                 }
             }
         }

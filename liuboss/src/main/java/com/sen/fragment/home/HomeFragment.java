@@ -72,7 +72,7 @@ public class HomeFragment extends BaseFragment {
             public void onImageClick(int position, View imageView) {
 
             }
-        }, 0);
+        }, 1);
     }
 
     @Override
