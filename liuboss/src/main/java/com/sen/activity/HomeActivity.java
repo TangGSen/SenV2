@@ -40,7 +40,7 @@ public class HomeActivity extends BaseActivity {
 
     public void initView() {
         setContentView(R.layout.activity_home);
-        StatusBarCompat.compat(this, ResourcesUtils.getResColor(this, R.color.colorPrimaryDark));
+       StatusBarCompat.compat(this, ResourcesUtils.getResColor(this, R.color.colorPrimaryDark));
         ButterKnife.bind(this);
         initFragmentSelect();
         initTabView();
