@@ -15,7 +15,7 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/layout_buttom_tab"
-        style="@style/HomeTabLayout"
+        style="@style/TabLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/home_tab_dimens"
         android:background="@color/tab_bgcolor" />

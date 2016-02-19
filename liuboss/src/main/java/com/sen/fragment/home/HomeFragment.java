@@ -60,7 +60,7 @@ public class HomeFragment extends BaseFragment {
 
 
 
-
+    //获取TabLayout的高度然后设置CoordinatorLayout 的总高度
         ViewTreeObserver vto = home_tablayout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -140,6 +140,7 @@ public class HomeFragment extends BaseFragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.home_buttom_item_tab, null);
         AppCompatTextView textView = (AppCompatTextView) view.findViewById(R.id.tab_name);
         textView.setText(text);
+        textView.setTextSize(16);
         return view;
     }
 }
