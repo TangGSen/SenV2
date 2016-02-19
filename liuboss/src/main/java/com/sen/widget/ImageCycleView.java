@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Created by zhouweilong on 15/11/22.
  */
-public class ImageCycleView extends LinearLayout{
+public class ImageCycleView extends LinearLayout {
 
     private ViewPager mViewpager;
 
@@ -36,11 +36,6 @@ public class ImageCycleView extends LinearLayout{
     private ImageView[] mImageViews = null;
 
     private boolean isStop;
-
-    /**
-     * 游标是圆形还是长条，要是设置为0是长条，要是1就是圆形 默认是圆形
-     */
-    public int stype = 1;
 
 
     public boolean isAutoCycle = true;
@@ -60,7 +55,7 @@ public class ImageCycleView extends LinearLayout{
     private ImageCycleAdapter mAdvAdapter;
 
     public ImageCycleView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public ImageCycleView(Context context, AttributeSet attrs) {
@@ -69,12 +64,13 @@ public class ImageCycleView extends LinearLayout{
     }
 
     private void initView(Context context) {
-        this.context=context;
-        view= LayoutInflater.from(context).inflate(R.layout.widget_image_cycle_view,null);
-        mViewpager=(ViewPager)view.findViewById(R.id.adv_pager);
+        this.context = context;
+        view = LayoutInflater.from(context).inflate(R.layout.widget_image_cycle_view, null);
+        mViewpager = (ViewPager) view.findViewById(R.id.adv_pager);
         mViewpager.setOnPageChangeListener(new GuidePageChangeListener());
-        viewGroup=(LinearLayout)view.findViewById(R.id.viewGroup);
+        viewGroup = (LinearLayout) view.findViewById(R.id.viewGroup);
     }
+
     /**
      * 触摸停止计时器，抬起启动计时器
      */
@@ -95,18 +91,18 @@ public class ImageCycleView extends LinearLayout{
 
         return super.dispatchTouchEvent(event);
     }
+
     /**
      * 装填图片数据
      *
      * @param imageUrlList
      * @param imageCycleViewListener
      */
-    public void setImageResources(ArrayList<String> imageUrlList, ImageCycleViewListener imageCycleViewListener, int stype) {
+    public void setImageResources(ArrayList<String> imageUrlList, ImageCycleViewListener imageCycleViewListener) {
 
         if (imageUrlList == null || imageUrlList.size() == 0) {
             return;
         }
-        this.stype = stype;
         // 清除
         viewGroup.removeAllViews();
         // 图片广告数量
@@ -121,15 +117,13 @@ public class ImageCycleView extends LinearLayout{
 
             mImageViews[i] = mImageView;
             if (i == 0) {
-                if (this.stype == 1)
-                    mImageViews[i].setBackgroundResource(R.drawable.head_spot_normal);
-                else
-                    mImageViews[i].setBackgroundResource(R.drawable.head_spot_selected);
+
+                mImageViews[i].setBackgroundResource(R.drawable.head_spot_selected);
+
             } else {
-                if (this.stype == 1)
-                    mImageViews[i].setBackgroundResource(R.drawable.head_spot_normal);
-                else
-                    mImageViews[i].setBackgroundResource(R.drawable.head_spot_selected);
+
+                mImageViews[i].setBackgroundResource(R.drawable.head_spot_normal);
+
             }
             viewGroup.addView(mImageViews[i]);
         }
@@ -165,6 +159,7 @@ public class ImageCycleView extends LinearLayout{
         if (isAutoCycle)
             mHandler.postDelayed(mImageTimerTask, time);
     }
+
     /**
      * 停止图片滚动任务
      */
@@ -194,7 +189,6 @@ public class ImageCycleView extends LinearLayout{
 
     /**
      * 轮播图片监听
-     *
      */
     private final class GuidePageChangeListener implements ViewPager.OnPageChangeListener {
         @Override
@@ -213,16 +207,12 @@ public class ImageCycleView extends LinearLayout{
             index = index % mImageViews.length;
             // 设置当前显示的图片
             // 设置图片滚动指示器背
-            if (stype == 1)
-                mImageViews[index].setBackgroundResource(R.drawable.head_spot_selected);
-            else
-                mImageViews[index].setBackgroundResource(R.drawable.head_spot_normal);
+
+            mImageViews[index].setBackgroundResource(R.drawable.head_spot_selected);
+
             for (int i = 0; i < mImageViews.length; i++) {
                 if (index != i) {
-                    if (stype == 1)
-                        mImageViews[i].setBackgroundResource(R.drawable.head_spot_selected);
-                    else
-                        mImageViews[i].setBackgroundResource(R.drawable.head_spot_normal);
+                    mImageViews[i].setBackgroundResource(R.drawable.head_spot_normal);
                 }
             }
         }
