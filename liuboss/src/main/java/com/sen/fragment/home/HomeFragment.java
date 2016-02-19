@@ -3,14 +3,18 @@ package com.sen.fragment.home;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 
 import com.sen.base.BaseFragment;
 import com.sen.liuboss.R;
+import com.sen.uitls.ResourcesUtils;
 import com.sen.widget.ImageCycleView;
 
 import java.util.ArrayList;
@@ -30,6 +34,11 @@ public class HomeFragment extends BaseFragment {
     @Bind(R.id.collapsingToolbarLayout)
     CollapsingToolbarLayout collapsingToolbarLayout;
 
+    @Bind(R.id.home_tablayout)
+    TabLayout home_tablayout;
+
+    private String tabTiles[];
+
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_home_act_home, container, false);
@@ -37,25 +46,47 @@ public class HomeFragment extends BaseFragment {
         //处理适配 设置比例
         dealAdaptationToPhone();
 
-
+        initTabView();
 
 
         return rootView;
     }
 
+    private void initTabView() {
+
+    }
+
     private void dealAdaptationToPhone() {
 
-        WindowManager windowManager = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(dm);
 
-        ViewGroup.LayoutParams params = head_viewpager.getLayoutParams();
-        params.height = (int) (dm.widthPixels * 0.421875);
-        head_viewpager.setLayoutParams(params);
 
-        ViewGroup.LayoutParams collapsingLayoutParams = collapsingToolbarLayout.getLayoutParams();
-        collapsingLayoutParams.height = (int) (dm.widthPixels);
-        collapsingToolbarLayout.setLayoutParams(collapsingLayoutParams);
+
+        ViewTreeObserver vto = home_tablayout.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+                home_tablayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                int tablayoutHeight =home_tablayout.getHeight();
+
+                WindowManager windowManager = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
+                DisplayMetrics dm = new DisplayMetrics();
+                windowManager.getDefaultDisplay().getMetrics(dm);
+
+                int commomHeight = (int) (dm.widthPixels * 0.421875);
+
+                ViewGroup.LayoutParams params = head_viewpager.getLayoutParams();
+                params.height = commomHeight;
+                head_viewpager.setLayoutParams(params);
+
+                ViewGroup.LayoutParams collapsingLayoutParams = collapsingToolbarLayout.getLayoutParams();
+                collapsingLayoutParams.height = commomHeight+tablayoutHeight;
+                collapsingToolbarLayout.setLayoutParams(collapsingLayoutParams);
+
+            }
+        });
+
+
 
 
     }
@@ -73,6 +104,16 @@ public class HomeFragment extends BaseFragment {
 
             }
         });
+
+        //init tab data
+        tabTiles =  ResourcesUtils.getStringArray(getContext(), R.array.taHomeItemName);
+        int tabCount = tabTiles.length;
+
+        for (int i = 0; i < tabCount; i++) {
+            TabLayout.Tab tab = home_tablayout.newTab();
+            tab.setCustomView(getTabView(tabTiles[i]));
+            home_tablayout.addTab(tab, i);
+        }
     }
 
     @Override
@@ -92,5 +133,13 @@ public class HomeFragment extends BaseFragment {
         super.onStop();
         head_viewpager.stopImageCycle();
         setUserVisibleHint(false);
+    }
+
+    //自定义TabView
+    public View getTabView(String text) {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.home_buttom_item_tab, null);
+        AppCompatTextView textView = (AppCompatTextView) view.findViewById(R.id.tab_name);
+        textView.setText(text);
+        return view;
     }
 }

@@ -50,7 +50,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        tabTiles = ResourcesUtils.getStringArray(this, R.array.tabItemName);
+        tabTiles = ResourcesUtils.getStringArray(this, R.array.tabButtonItemName);
         tabItemDrawableNormal = new int[]{R.drawable.ic_tab_home_normal, R.drawable.ic_tab_classification_normal, R.drawable.ic_tab_car_normal, R.drawable.ic_tab_personal_normal};
         tabItemDrawableSelected = new int[]{R.drawable.ic_tab_home_selected, R.drawable.ic_tab_classification_selected, R.drawable.ic_tab_car_selected, R.drawable.ic_tab_personal_selected};
     }
