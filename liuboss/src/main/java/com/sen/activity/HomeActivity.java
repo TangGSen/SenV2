@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 
 import com.sen.base.BaseActivity;
 import com.sen.liuboss.R;
-import com.sen.uitls.FragmentFactory;
+import com.sen.uitls.HomeActFragmentFactory;
 import com.sen.uitls.ResourcesUtils;
 import com.sen.uitls.StatusBarCompat;
 
@@ -58,9 +58,9 @@ public class HomeActivity extends BaseActivity {
     private void initFragmentSelect() {
         mFragmentManager = getSupportFragmentManager();
         //Home is selected
-        FragmentFactory.createFragment(0);
+        HomeActFragmentFactory.createFragment(0);
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        mCurrentFragment = FragmentFactory.createFragment(0);
+        mCurrentFragment = HomeActFragmentFactory.createFragment(0);
         transaction.add(R.id.home_layout_content, mCurrentFragment, tabTiles[0]).commit();
 
     }
@@ -80,7 +80,7 @@ public class HomeActivity extends BaseActivity {
                 int positionTab = tab.getPosition();
                 AppCompatTextView textView = (AppCompatTextView) tab.getCustomView();
                 changeSelecteTabColor(textView, tabItemDrawableSelected[positionTab], true);
-                switchContent(mCurrentFragment, FragmentFactory.createFragment(positionTab), tabTiles[positionTab]);
+                switchContent(mCurrentFragment, HomeActFragmentFactory.createFragment(positionTab), tabTiles[positionTab]);
 
             }
 

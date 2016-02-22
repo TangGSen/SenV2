@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 
+import com.sen.adapter.HomeActFragAdpter;
 import com.sen.base.BaseFragment;
 import com.sen.liuboss.R;
 import com.sen.uitls.ResourcesUtils;
@@ -36,6 +38,8 @@ public class HomeFragment extends BaseFragment {
 
     @Bind(R.id.home_tablayout)
     TabLayout home_tablayout;
+    @Bind(R.id.home_viewpager_shows)
+    ViewPager home_viewpager_shows;
 
     private String tabTiles[];
 
@@ -47,27 +51,41 @@ public class HomeFragment extends BaseFragment {
         dealAdaptationToPhone();
 
         initTabView();
+        initViewPager();
 
 
         return rootView;
     }
 
-    private void initTabView() {
+    private void initViewPager() {
+        final HomeActFragAdpter fragAdapter = new HomeActFragAdpter(getActivity().getSupportFragmentManager(), getContext(), tabTiles);
+        home_viewpager_shows.setAdapter(fragAdapter);
+        home_tablayout.setupWithViewPager(home_viewpager_shows);
+    }
 
+    private void initTabView() {
+        //init tab data
+        tabTiles = ResourcesUtils.getStringArray(getContext(), R.array.taHomeItemName);
+        int tabCount = tabTiles.length;
+
+        for (int i = 0; i < tabCount; i++) {
+            TabLayout.Tab tab = home_tablayout.newTab();
+            tab.setCustomView(getTabView(tabTiles[i]));
+            home_tablayout.addTab(tab, i);
+        }
     }
 
     private void dealAdaptationToPhone() {
 
 
-
-    //获取TabLayout的高度然后设置CoordinatorLayout 的总高度
+        //获取TabLayout的高度然后设置CoordinatorLayout 的总高度
         ViewTreeObserver vto = home_tablayout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
 
                 home_tablayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                int tablayoutHeight =home_tablayout.getHeight();
+                int tablayoutHeight = home_tablayout.getHeight();
 
                 WindowManager windowManager = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
                 DisplayMetrics dm = new DisplayMetrics();
@@ -80,13 +98,11 @@ public class HomeFragment extends BaseFragment {
                 head_viewpager.setLayoutParams(params);
 
                 ViewGroup.LayoutParams collapsingLayoutParams = collapsingToolbarLayout.getLayoutParams();
-                collapsingLayoutParams.height = commomHeight+tablayoutHeight;
+                collapsingLayoutParams.height = commomHeight + tablayoutHeight;
                 collapsingToolbarLayout.setLayoutParams(collapsingLayoutParams);
 
             }
         });
-
-
 
 
     }
@@ -105,15 +121,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
-        //init tab data
-        tabTiles =  ResourcesUtils.getStringArray(getContext(), R.array.taHomeItemName);
-        int tabCount = tabTiles.length;
 
-        for (int i = 0; i < tabCount; i++) {
-            TabLayout.Tab tab = home_tablayout.newTab();
-            tab.setCustomView(getTabView(tabTiles[i]));
-            home_tablayout.addTab(tab, i);
-        }
     }
 
     @Override
