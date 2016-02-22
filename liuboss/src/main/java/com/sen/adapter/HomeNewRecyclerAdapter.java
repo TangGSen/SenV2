@@ -23,6 +23,7 @@ public class HomeNewRecyclerAdapter extends RecyclerView.Adapter<HomeNewRecycler
     private List<String> mData;
     private Context mContext;
     public HomeNewRecyclerAdapter(Context context,List<String> data){
+        mContext =context;
         mData = data;
     }
     @Override
