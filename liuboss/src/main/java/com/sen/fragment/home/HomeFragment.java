@@ -77,11 +77,11 @@ public class HomeFragment extends BaseFragment {
 
             }
         }
+//        home_tablayout.getTabAt(0).select(); 无效
+        AppCompatTextView compatTextView = (AppCompatTextView) home_tablayout.getTabAt(0).getCustomView();
+        compatTextView.setSelected(true);
 
-        home_viewpager_shows.setCurrentItem(0);
 
-//        AppCompatTextView textView = (AppCompatTextView) home_tablayout.getTabAt(0).getCustomView();
-//        textView.setTextColor(ResourcesUtils.getResColor(getContext(),R.color.colorPrimaryDark));
     }
 
     private void dealAdaptationToPhone() {
