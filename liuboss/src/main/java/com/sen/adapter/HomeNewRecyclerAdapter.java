@@ -1,11 +1,14 @@
 package com.sen.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sen.liuboss.R;
@@ -18,11 +21,14 @@ import java.util.List;
  */
 public class HomeNewRecyclerAdapter extends RecyclerView.Adapter<HomeNewRecyclerAdapter.ViewHolder> {
     private List<String> mData;
-    public HomeNewRecyclerAdapter(List<String> data){
+    private Context mContext;
+    public HomeNewRecyclerAdapter(Context context,List<String> data){
         mData = data;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_new_layout,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -30,6 +36,16 @@ public class HomeNewRecyclerAdapter extends RecyclerView.Adapter<HomeNewRecycler
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+
+        WindowManager windowManager = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(dm);
+
+        ViewGroup.LayoutParams params = holder.mImageView.getLayoutParams();
+        params.height =(int) (dm.widthPixels * 0.5);
+        holder.mImageView.setLayoutParams(params);
+
+        holder.mImageView.setTag(mData.get(position));
         holder.mTextView.setText(""+position);
         ImageLoader.getInstance().displayImage(mData.get(position), holder.mImageView, ImageLoadOptions.getBannerImageOptions());
 

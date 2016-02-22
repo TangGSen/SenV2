@@ -12,6 +12,8 @@ import com.sen.base.BaseFragment;
 import com.sen.liuboss.R;
 import com.sen.mode.HomeNewBean;
 
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -47,7 +49,8 @@ public class HomeNewFragment extends BaseFragment {
     @Override
     protected void initData() {
         HomeNewBean home = new HomeNewBean();
-        HomeNewRecyclerAdapter adapter = new HomeNewRecyclerAdapter(home.getData());
+        List<String> data =home.getData();
+        HomeNewRecyclerAdapter adapter = new HomeNewRecyclerAdapter(getActivity(),home.getData());
         recyclerView_new.setAdapter(adapter);
     }
 
