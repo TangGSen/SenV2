@@ -43,6 +43,8 @@ public class HomeFragment extends BaseFragment {
 
     private String tabTiles[];
 
+    private int tabCount ;
+
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_home_act_home, container, false);
@@ -51,28 +53,35 @@ public class HomeFragment extends BaseFragment {
         dealAdaptationToPhone();
 
         initTabView();
-        initViewPager();
+
 
 
         return rootView;
     }
 
     private void initViewPager() {
-        final HomeActFragAdpter fragAdapter = new HomeActFragAdpter(getActivity().getSupportFragmentManager(), getContext(), tabTiles);
-        home_viewpager_shows.setAdapter(fragAdapter);
-        home_tablayout.setupWithViewPager(home_viewpager_shows);
+
     }
 
     private void initTabView() {
         //init tab data
         tabTiles = ResourcesUtils.getStringArray(getContext(), R.array.taHomeItemName);
-        int tabCount = tabTiles.length;
-
+        final HomeActFragAdpter fragAdapter = new HomeActFragAdpter(getActivity().getSupportFragmentManager(), getContext(), tabTiles);
+        home_viewpager_shows.setAdapter(fragAdapter);
+        home_tablayout.setupWithViewPager(home_viewpager_shows);
+        tabCount = home_tablayout.getTabCount();
         for (int i = 0; i < tabCount; i++) {
-            TabLayout.Tab tab = home_tablayout.newTab();
-            tab.setCustomView(getTabView(tabTiles[i]));
-            home_tablayout.addTab(tab, i);
+            TabLayout.Tab tab = home_tablayout.getTabAt(i);
+            if (tab != null) {
+                tab.setCustomView(getTabView(tabTiles[i]));
+
+            }
         }
+
+        home_viewpager_shows.setCurrentItem(0);
+
+//        AppCompatTextView textView = (AppCompatTextView) home_tablayout.getTabAt(0).getCustomView();
+//        textView.setTextColor(ResourcesUtils.getResColor(getContext(),R.color.colorPrimaryDark));
     }
 
     private void dealAdaptationToPhone() {
@@ -120,6 +129,8 @@ public class HomeFragment extends BaseFragment {
 
             }
         });
+
+
 
 
     }

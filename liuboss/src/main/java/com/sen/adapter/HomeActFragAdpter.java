@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v7.widget.Toolbar;
 
 import com.sen.uitls.HomeFragFragmentFactory;
 
@@ -18,7 +17,6 @@ public class HomeActFragAdpter extends FragmentPagerAdapter {
 
     //tab title
     private String mTabTiles[] ;
-    private Toolbar mToolbar;
 
     public HomeActFragAdpter(FragmentManager fm, Context context, String tabTiles[]) {
         super(fm);
