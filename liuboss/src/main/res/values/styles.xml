@@ -20,13 +20,13 @@
     </style>
 
 
-    <!--HomeActivity Tablayout style-->
+    <!--MainActivity Tablayout style-->
   <style name="TabLayout" parent="Widget.Design.TabLayout">
     <item name="tabIndicatorColor">?attr/colorAccent</item>
     <item name="tabIndicatorHeight">0dp</item>
     <item name="tabPaddingStart">12dp</item>
     <item name="tabPaddingEnd">12dp</item>
-    <item name="tabBackground">@color/tab_bgcolor</item>
+    <item name="tabBackground">@color/half_transparent</item>
     <item name="tabSelectedTextColor">?android:textColorPrimary</item>
 </style>
 

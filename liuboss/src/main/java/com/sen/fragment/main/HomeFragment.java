@@ -1,4 +1,4 @@
-package com.sen.fragment.home;
+package com.sen.fragment.main;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -47,7 +47,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_home_act_home, container, false);
+        rootView = inflater.inflate(R.layout.fragment_main_act_home, container, false);
         ButterKnife.bind(this, rootView);
         //处理适配 设置比例
         dealAdaptationToPhone();
@@ -69,6 +69,7 @@ public class HomeFragment extends BaseFragment {
         final HomeActFragAdpter fragAdapter = new HomeActFragAdpter(getActivity().getSupportFragmentManager(), getContext(), tabTiles);
         home_viewpager_shows.setAdapter(fragAdapter);
         home_tablayout.setupWithViewPager(home_viewpager_shows);
+
         tabCount = home_tablayout.getTabCount();
         for (int i = 0; i < tabCount; i++) {
             TabLayout.Tab tab = home_tablayout.getTabAt(i);
@@ -128,7 +129,7 @@ public class HomeFragment extends BaseFragment {
                 DisplayMetrics dm = new DisplayMetrics();
                 windowManager.getDefaultDisplay().getMetrics(dm);
 
-                int commomHeight = (int) (dm.widthPixels * 0.421875);
+                int commomHeight = (int) (dm.widthPixels * 0.4518);
 
                 ViewGroup.LayoutParams params = head_viewpager.getLayoutParams();
                 params.height = commomHeight;
@@ -172,14 +173,13 @@ public class HomeFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         head_viewpager.startImageCycle();
-        setUserVisibleHint(true);
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
         head_viewpager.stopImageCycle();
-        setUserVisibleHint(false);
     }
 
     //自定义TabView

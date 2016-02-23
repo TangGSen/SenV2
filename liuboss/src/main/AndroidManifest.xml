@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.sen.activity.HomeActivity"
+            android:name="com.sen.activity.MainActivity"
             android:theme="@style/ActivityTheme.Base"
             >
             <intent-filter>

@@ -89,6 +89,18 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUserVisibleHint(true);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        setUserVisibleHint(false);
+    }
+
     protected void onVisible() {
         lazyLoad();
     }

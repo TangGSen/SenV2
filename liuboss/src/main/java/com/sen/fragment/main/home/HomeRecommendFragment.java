@@ -1,4 +1,4 @@
-package com.sen.fragment.home;
+package com.sen.fragment.main.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import com.sen.base.BaseFragment;
 /**
  * Created by Sen on 2016/2/22.
  */
-public class HomeHotFragment extends BaseFragment {
+public class HomeRecommendFragment extends BaseFragment {
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return null;

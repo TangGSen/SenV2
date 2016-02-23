@@ -47,7 +47,7 @@ public class HomeNewRecyclerAdapter extends RecyclerView.Adapter<HomeNewRecycler
         holder.mImageView.setLayoutParams(params);
 
         holder.mImageView.setTag(mData.get(position));
-        holder.mTextView.setText(""+position);
+        holder.mTextView.setText(""+position+"对于RecyclerView里面的某个元素，ViewHolder持有了该元素的布局和数据信息。我们实现ViewHolder时，最好可以添加一些属性，来缓存一些需要花费资源处理的结果。");
         ImageLoader.getInstance().displayImage(mData.get(position), holder.mImageView, ImageLoadOptions.getBannerImageOptions());
 
     }
@@ -63,7 +63,7 @@ public class HomeNewRecyclerAdapter extends RecyclerView.Adapter<HomeNewRecycler
         public AppCompatImageView mImageView;
         public ViewHolder(View view){
             super(view);
-            mTextView = (AppCompatTextView) view.findViewById(R.id.txt_class);
+            mTextView = (AppCompatTextView) view.findViewById(R.id.des_text);
             mImageView = (AppCompatImageView) view.findViewById(R.id.new_imageview);
         }
     }

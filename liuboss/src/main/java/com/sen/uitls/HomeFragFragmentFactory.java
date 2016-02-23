@@ -3,9 +3,9 @@ package com.sen.uitls;
 import android.support.v4.app.Fragment;
 
 import com.sen.base.BaseFragment;
-import com.sen.fragment.home.HomeHotFragment;
-import com.sen.fragment.home.HomeNewFragment;
-import com.sen.fragment.home.HomeRecommendFragment;
+import com.sen.fragment.main.home.HomeHotFragment;
+import com.sen.fragment.main.home.HomeNewFragment;
+import com.sen.fragment.main.home.HomeRecommendFragment;
 
 import java.util.HashMap;
 

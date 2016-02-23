@@ -1,4 +1,4 @@
-package com.sen.fragment.home;
+package com.sen.fragment.main.home;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,13 +62,11 @@ public class HomeNewFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        setUserVisibleHint(true);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        setUserVisibleHint(false);
     }
 
 }

@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 
 import com.sen.base.BaseActivity;
 import com.sen.liuboss.R;
-import com.sen.uitls.HomeActFragmentFactory;
+import com.sen.uitls.MainActFragmentFactory;
 import com.sen.uitls.ResourcesUtils;
 import com.sen.uitls.StatusBarCompat;
 
@@ -20,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class HomeActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
 
 
     @Bind(R.id.home_layout_content)
@@ -39,7 +39,7 @@ public class HomeActivity extends BaseActivity {
 
 
     public void initView() {
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_main);
        StatusBarCompat.compat(this, ResourcesUtils.getResColor(this, R.color.colorPrimaryDark));
         ButterKnife.bind(this);
         initFragmentSelect();
@@ -58,9 +58,9 @@ public class HomeActivity extends BaseActivity {
     private void initFragmentSelect() {
         mFragmentManager = getSupportFragmentManager();
         //Home is selected
-        HomeActFragmentFactory.createFragment(0);
+        MainActFragmentFactory.createFragment(0);
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        mCurrentFragment = HomeActFragmentFactory.createFragment(0);
+        mCurrentFragment = MainActFragmentFactory.createFragment(0);
         transaction.add(R.id.home_layout_content, mCurrentFragment, tabTiles[0]).commit();
 
     }
@@ -80,7 +80,7 @@ public class HomeActivity extends BaseActivity {
                 int positionTab = tab.getPosition();
                 AppCompatTextView textView = (AppCompatTextView) tab.getCustomView();
                 changeSelecteTabColor(textView, tabItemDrawableSelected[positionTab], true);
-                switchContent(mCurrentFragment, HomeActFragmentFactory.createFragment(positionTab), tabTiles[positionTab]);
+                switchContent(mCurrentFragment, MainActFragmentFactory.createFragment(positionTab), tabTiles[positionTab]);
 
             }
 

@@ -1,4 +1,4 @@
-package com.sen.fragment.home;
+package com.sen.fragment.main;
 
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
@@ -21,7 +21,7 @@ public class PersonalCenterFragment extends BaseFragment {
     AppCompatTextView textView ;
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_home_act_classification, container, false);
+        rootView = inflater.inflate(R.layout.fragment_main_act_classification, container, false);
         ButterKnife.bind(this, rootView);
         textView.setText("Person");
         return rootView;

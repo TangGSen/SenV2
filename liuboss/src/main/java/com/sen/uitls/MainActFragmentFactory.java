@@ -3,17 +3,17 @@ package com.sen.uitls;
 import android.support.v4.app.Fragment;
 
 import com.sen.base.BaseFragment;
-import com.sen.fragment.home.ClassificationFragment;
-import com.sen.fragment.home.HomeFragment;
-import com.sen.fragment.home.PersonalCenterFragment;
-import com.sen.fragment.home.ShoppingCartFragment;
+import com.sen.fragment.main.ClassificationFragment;
+import com.sen.fragment.main.HomeFragment;
+import com.sen.fragment.main.PersonalCenterFragment;
+import com.sen.fragment.main.ShoppingCartFragment;
 
 import java.util.HashMap;
 
 /**
  * Created by Sen on 2016/2/3.
  */
-public class HomeActFragmentFactory {
+public class MainActFragmentFactory {
     private static HashMap<Integer,Fragment> hashMap = new HashMap<Integer, Fragment>();
     public static BaseFragment createFragment(int position) {
         BaseFragment baseFragment = null;
