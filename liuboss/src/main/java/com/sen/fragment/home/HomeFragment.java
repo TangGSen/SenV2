@@ -80,7 +80,35 @@ public class HomeFragment extends BaseFragment {
 //        home_tablayout.getTabAt(0).select(); 无效
         AppCompatTextView compatTextView = (AppCompatTextView) home_tablayout.getTabAt(0).getCustomView();
         compatTextView.setSelected(true);
+        compatTextView.setBackgroundDrawable(ResourcesUtils.getResDrawable(getContext(),R.drawable.home_tab_background));
+        home_viewpager_shows.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //重设textview 的背景
+                for (int i = 0; i < tabCount; i++) {
+                    AppCompatTextView compatTextView = (AppCompatTextView) home_tablayout.getTabAt(i).getCustomView();
+                    if (i==position){
+                        compatTextView.setBackgroundDrawable(ResourcesUtils.getResDrawable(getContext(),R.drawable.home_tab_background));
+                    }else{
+                        compatTextView.setBackgroundDrawable(null);
+                    }
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 
@@ -156,8 +184,8 @@ public class HomeFragment extends BaseFragment {
 
     //自定义TabView
     public View getTabView(String text) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.home_buttom_item_tab, null);
-        AppCompatTextView textView = (AppCompatTextView) view.findViewById(R.id.tab_name);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.home_inner_item_tab, null);
+        AppCompatTextView textView = (AppCompatTextView) view.findViewById(R.id.inner_tab_name);
         textView.setText(text);
         textView.setTextSize(16);
         return view;
