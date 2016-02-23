@@ -3,8 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/frgment_login_24dp"
     android:background="@null"
     android:fitsSystemWindows="true">
+
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +17,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -23,7 +26,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:minHeight="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"
+                android:layout_gravity="top"
+                app:layout_collapseParallaxMultiplier="0.7"
+                android:background="@color/primary_text"
                 app:titleMarginTop="15dp" />
 
             <android.support.design.widget.TabLayout
@@ -32,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="bottom"
-                android:background="@color/tab_bgcolor"
+                android:background="@color/accent"
                 />
 
 

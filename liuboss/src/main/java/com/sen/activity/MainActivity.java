@@ -58,7 +58,6 @@ public class MainActivity extends BaseActivity {
     private void initFragmentSelect() {
         mFragmentManager = getSupportFragmentManager();
         //Home is selected
-        MainActFragmentFactory.createFragment(0);
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         mCurrentFragment = MainActFragmentFactory.createFragment(0);
         transaction.add(R.id.home_layout_content, mCurrentFragment, tabTiles[0]).commit();
