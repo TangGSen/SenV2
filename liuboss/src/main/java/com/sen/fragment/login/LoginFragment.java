@@ -66,6 +66,11 @@ public class LoginFragment extends BaseFragment {
 
 
     @Override
+    protected void dealAdaptationToPhone() {
+
+    }
+
+    @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);

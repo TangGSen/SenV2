@@ -167,6 +167,11 @@ public class FragRegisterStepOne extends BaseFragment {
     }
 
     @Override
+    protected void dealAdaptationToPhone() {
+
+    }
+
+    @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_register_step_one, container, false);
         ButterKnife.bind(this, rootView);

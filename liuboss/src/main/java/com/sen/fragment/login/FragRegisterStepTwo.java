@@ -52,6 +52,11 @@ public class FragRegisterStepTwo extends BaseFragment {
     private boolean boolPassword;
 
     @Override
+    protected void dealAdaptationToPhone() {
+
+    }
+
+    @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_register_step_two, container, false);
         ButterKnife.bind(this, view);
