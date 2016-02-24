@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 
 import com.sen.adapter.FoundFragTabAdpter;
 import com.sen.base.BaseFragment;
@@ -109,7 +109,7 @@ public class FoundFragment extends BaseFragment {
         params.width = (int) (dm.widthPixels * 0.618);
         tv_search.setLayoutParams(params);
 
-        LinearLayout.LayoutParams coordinatorParams = (LinearLayout.LayoutParams) coordinatorLayout.getLayoutParams();
+        FrameLayout.LayoutParams coordinatorParams = (FrameLayout.LayoutParams) coordinatorLayout.getLayoutParams();
         coordinatorParams.setMargins(0,getStatusBarHeight(),0,0);
         coordinatorLayout.setLayoutParams(coordinatorParams);
     }
