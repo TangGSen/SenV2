@@ -5,20 +5,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.sen.factory.ClassFragFragmentFactory;
+import com.sen.factory.FoundTabFragmentFactory;
 
 
 /**
  * Created by Sen on 2016/2/3.
  */
-public class ClassFragTabAdpter extends FragmentPagerAdapter {
+public class FoundFragTabAdpter extends FragmentPagerAdapter {
 
     Context mContext;
 
     //tab title
     private String mTabTiles[] ;
 
-    public ClassFragTabAdpter(FragmentManager fm, Context context, String tabTiles[]) {
+    public FoundFragTabAdpter(FragmentManager fm, Context context, String tabTiles[]) {
         super(fm);
         mContext = context;
         mTabTiles = tabTiles;
@@ -29,7 +29,7 @@ public class ClassFragTabAdpter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return ClassFragFragmentFactory.createFragment(position);
+        return FoundTabFragmentFactory.createFragment(position);
     }
 
     @Override

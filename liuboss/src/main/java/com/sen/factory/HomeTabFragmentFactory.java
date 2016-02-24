@@ -12,7 +12,7 @@ import java.util.HashMap;
 /**
  * Created by Sen on 2016/2/3.
  */
-public class ClassFragFragmentFactory {
+public class HomeTabFragmentFactory {
     private static HashMap<Integer,Fragment> hashMap = new HashMap<Integer, Fragment>();
     public static BaseFragment createFragment(int position) {
         BaseFragment baseFragment = null;

@@ -19,7 +19,7 @@ public class PersonalCenterFragment extends BaseFragment {
 //    AppCompatTextView textView ;
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_main_act_classification, container, false);
+        rootView = inflater.inflate(R.layout.fragment_main_act_found, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
     }

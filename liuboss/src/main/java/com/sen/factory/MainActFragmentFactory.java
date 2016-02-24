@@ -3,7 +3,7 @@ package com.sen.factory;
 import android.support.v4.app.Fragment;
 
 import com.sen.base.BaseFragment;
-import com.sen.fragment.main.ClassificationFragment;
+import com.sen.fragment.main.FoundFragment;
 import com.sen.fragment.main.HomeFragment;
 import com.sen.fragment.main.PersonalCenterFragment;
 import com.sen.fragment.main.ShoppingCartFragment;
@@ -32,7 +32,7 @@ public class MainActFragmentFactory {
                     break;
                 case 1:
                     //分类
-                    baseFragment = new ClassificationFragment();
+                    baseFragment = new FoundFragment();
                     break;
                 case 2:
                     //购物车

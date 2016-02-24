@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.sen.factory.HomeFragFragmentFactory;
+import com.sen.factory.HomeTabFragmentFactory;
 
 
 /**
@@ -29,7 +29,7 @@ public class HomeActFragAdpter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return HomeFragFragmentFactory.createFragment(position);
+        return HomeTabFragmentFactory.createFragment(position);
     }
 
     @Override

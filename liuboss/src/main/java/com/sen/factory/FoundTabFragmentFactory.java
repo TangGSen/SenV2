@@ -3,16 +3,14 @@ package com.sen.factory;
 import android.support.v4.app.Fragment;
 
 import com.sen.base.BaseFragment;
-import com.sen.fragment.main.home.HomeHotFragment;
-import com.sen.fragment.main.home.HomeNewFragment;
-import com.sen.fragment.main.home.HomeRecommendFragment;
+import com.sen.fragment.main.found.FoundChildFragment;
 
 import java.util.HashMap;
 
 /**
  * Created by Sen on 2016/2/3.
  */
-public class HomeFragFragmentFactory {
+public class FoundTabFragmentFactory {
     private static HashMap<Integer,Fragment> hashMap = new HashMap<Integer, Fragment>();
     public static BaseFragment createFragment(int position) {
         BaseFragment baseFragment = null;
@@ -27,15 +25,15 @@ public class HomeFragFragmentFactory {
             switch (position) {
                 case 0:
                     //流行新果
-                    baseFragment = new HomeNewFragment();
+                    baseFragment = new FoundChildFragment();
                     break;
                 case 1:
                     //人气热销
-                    baseFragment = new HomeHotFragment();
+                    baseFragment = new FoundChildFragment();
                     break;
                 case 2:
                     //为你推荐
-                    baseFragment = new HomeRecommendFragment();
+                    baseFragment = new FoundChildFragment();
                     break;
 
             }
