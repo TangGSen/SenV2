@@ -49,10 +49,16 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         isFirstLoad = true;
         View view = initViews(inflater, container, savedInstanceState);
+        dealAdaptationToPhone();
         isPrepared = true;
         lazyLoad();
         return view;
     }
+
+    /**
+     * 处理手机适配
+     */
+    protected abstract void dealAdaptationToPhone();
 
     /**
      * 如果是与ViewPager一起使用，调用的是setUserVisibleHint
@@ -140,5 +146,7 @@ public abstract class BaseFragment extends Fragment {
      *
      * @param title 一般用于显示在TabLayout的标题
      */
-    protected abstract void setDefaultFragmentTitle(String title);
+    protected  void setDefaultFragmentTitle(String title){
+
+    }
 }

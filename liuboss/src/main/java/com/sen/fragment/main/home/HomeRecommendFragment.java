@@ -12,6 +12,11 @@ import com.sen.base.BaseFragment;
  */
 public class HomeRecommendFragment extends BaseFragment {
     @Override
+    protected void dealAdaptationToPhone() {
+
+    }
+
+    @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return null;
     }
@@ -21,8 +26,5 @@ public class HomeRecommendFragment extends BaseFragment {
 
     }
 
-    @Override
-    protected void setDefaultFragmentTitle(String title) {
 
-    }
 }

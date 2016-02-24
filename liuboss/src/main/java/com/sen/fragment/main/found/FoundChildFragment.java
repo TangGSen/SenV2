@@ -54,8 +54,10 @@ public class FoundChildFragment extends BaseFragment {
         recyclerView_new.setAdapter(adapter);
     }
 
+
+
     @Override
-    protected void setDefaultFragmentTitle(String title) {
+    protected void dealAdaptationToPhone() {
 
     }
 

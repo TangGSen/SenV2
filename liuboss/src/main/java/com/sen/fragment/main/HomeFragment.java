@@ -113,9 +113,31 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-    private void dealAdaptationToPhone() {
 
 
+    @Override
+    protected void initData() {
+        //注意，懒加载 一定要调用 setUserVisibleHint(true)后该方法才调用
+        urls.add("http://s.xnimg.cn/rrinvest/wap/events/2015/recruitment/img/banner.jpg");
+        urls.add("http://a.xnimg.cn/rrinvest/img/bannerwap/2015-11-11.jpg");
+        urls.add("http://s.xnimg.cn/rrinvest/wap/events/2015/fall/img/appbanner.png");
+        urls.add("http://fmn.rrfmn.com/fmn074/20150413/1720/original_WyLG_60c800005a561e83.jpg");
+        head_viewpager.setImageResources(urls, new ImageCycleView.ImageCycleViewListener() {
+            @Override
+            public void onImageClick(int position, View imageView) {
+
+            }
+        });
+
+
+
+
+    }
+
+
+
+    @Override
+    protected void dealAdaptationToPhone() {
         //获取TabLayout的高度然后设置CoordinatorLayout 的总高度
         ViewTreeObserver vto = home_tablayout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -141,31 +163,6 @@ public class HomeFragment extends BaseFragment {
 
             }
         });
-
-
-    }
-
-    @Override
-    protected void initData() {
-        //注意，懒加载 一定要调用 setUserVisibleHint(true)后该方法才调用
-        urls.add("http://s.xnimg.cn/rrinvest/wap/events/2015/recruitment/img/banner.jpg");
-        urls.add("http://a.xnimg.cn/rrinvest/img/bannerwap/2015-11-11.jpg");
-        urls.add("http://s.xnimg.cn/rrinvest/wap/events/2015/fall/img/appbanner.png");
-        urls.add("http://fmn.rrfmn.com/fmn074/20150413/1720/original_WyLG_60c800005a561e83.jpg");
-        head_viewpager.setImageResources(urls, new ImageCycleView.ImageCycleViewListener() {
-            @Override
-            public void onImageClick(int position, View imageView) {
-
-            }
-        });
-
-
-
-
-    }
-
-    @Override
-    protected void setDefaultFragmentTitle(String title) {
 
     }
 

@@ -15,7 +15,13 @@ import butterknife.ButterKnife;
  */
 public class PersonalCenterFragment extends BaseFragment {
     private View rootView;
-//    @Bind(R.id.txt_class)
+
+    @Override
+    protected void dealAdaptationToPhone() {
+
+    }
+
+    //    @Bind(R.id.txt_class)
 //    AppCompatTextView textView ;
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,8 +34,5 @@ public class PersonalCenterFragment extends BaseFragment {
 
     }
 
-    @Override
-    protected void setDefaultFragmentTitle(String title) {
 
-    }
 }
