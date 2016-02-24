@@ -14,16 +14,29 @@
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/class_head_layout"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:minHeight="?attr/actionBarSize"
-                android:fitsSystemWindows="true"
-                android:background="@color/colorPrimary"
-                android:layout_gravity="top"
-                app:titleMarginTop="15dp" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/class_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:minHeight="48dp"
+            android:background="@color/colorPrimaryDark"
+            >
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_search"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:paddingLeft="@dimen/frgment_login_4dp"
+                android:paddingRight="@dimen/frgment_login_4dp"
+                android:text="@string/class_serach_txt"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/ic_serach"
+                android:textColor="@color/primary_light"
+                android:textSize="@dimen/fragment_font_14sp"
+                android:gravity="left|center_vertical"
+                android:background="@drawable/class_toolbar_serach_bg"/>
+
+            </android.support.v7.widget.Toolbar>
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/class_tablayout"
@@ -31,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="bottom"
-                android:background="@color/accent"
+                android:background="@color/tab_bgcolor"
                 />
 
 
