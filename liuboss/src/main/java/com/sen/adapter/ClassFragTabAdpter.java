@@ -5,20 +5,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.sen.factory.HomeFragFragmentFactory;
+import com.sen.factory.ClassFragFragmentFactory;
 
 
 /**
  * Created by Sen on 2016/2/3.
  */
-public class HomeActFragAdpter extends FragmentPagerAdapter {
+public class ClassFragTabAdpter extends FragmentPagerAdapter {
 
     Context mContext;
 
     //tab title
     private String mTabTiles[] ;
 
-    public HomeActFragAdpter(FragmentManager fm, Context context, String tabTiles[]) {
+    public ClassFragTabAdpter(FragmentManager fm, Context context, String tabTiles[]) {
         super(fm);
         mContext = context;
         mTabTiles = tabTiles;
@@ -29,7 +29,7 @@ public class HomeActFragAdpter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return HomeFragFragmentFactory.createFragment(position);
+        return ClassFragFragmentFactory.createFragment(position);
     }
 
     @Override

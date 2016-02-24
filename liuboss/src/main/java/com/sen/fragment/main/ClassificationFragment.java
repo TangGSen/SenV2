@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
-import com.sen.adapter.HomeActFragAdpter;
+import com.sen.adapter.ClassFragTabAdpter;
 import com.sen.base.BaseFragment;
 import com.sen.liuboss.R;
 import com.sen.uitls.ResourcesUtils;
@@ -42,7 +42,6 @@ public class ClassificationFragment extends BaseFragment {
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_main_act_classification, container, false);
         ButterKnife.bind(this, rootView);
-        initToolbarAndTab(rootView);
         dealAdaptationToPhone();
         initTabView();
         return rootView;
@@ -51,7 +50,7 @@ public class ClassificationFragment extends BaseFragment {
     private void initTabView() {
         //init tab data
         tabTiles = ResourcesUtils.getStringArray(getContext(), R.array.taHomeItemName);
-        final HomeActFragAdpter fragAdapter = new HomeActFragAdpter(getActivity().getSupportFragmentManager(), getContext(), tabTiles);
+         ClassFragTabAdpter fragAdapter = new ClassFragTabAdpter(getActivity().getSupportFragmentManager(), getContext(), tabTiles);
         class_viewpager_shows.setAdapter(fragAdapter);
         class_tablayout.setupWithViewPager(class_viewpager_shows);
 
@@ -64,36 +63,36 @@ public class ClassificationFragment extends BaseFragment {
             }
         }
 //        home_tablayout.getTabAt(0).select(); 无效
-        AppCompatTextView compatTextView = (AppCompatTextView) class_tablayout.getTabAt(0).getCustomView();
-        compatTextView.setSelected(true);
-        compatTextView.setBackgroundDrawable(ResourcesUtils.getResDrawable(getContext(), R.drawable.home_tab_background));
-        class_viewpager_shows.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                //重设textview 的背景
-                for (int i = 0; i < tabCount; i++) {
-                    AppCompatTextView compatTextView = (AppCompatTextView) class_tablayout.getTabAt(i).getCustomView();
-                    if (i == position) {
-                        compatTextView.setBackgroundDrawable(ResourcesUtils.getResDrawable(getContext(), R.drawable.home_tab_background));
-                    } else {
-                        compatTextView.setBackgroundDrawable(null);
-                    }
-
-                }
-
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+//        AppCompatTextView compatTextView = (AppCompatTextView) class_tablayout.getTabAt(0).getCustomView();
+//        compatTextView.setSelected(true);
+//        compatTextView.setBackgroundDrawable(ResourcesUtils.getResDrawable(getContext(), R.drawable.home_tab_background));
+//        class_viewpager_shows.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                //重设textview 的背景
+//                for (int i = 0; i < tabCount; i++) {
+//                    AppCompatTextView compatTextView = (AppCompatTextView) class_tablayout.getTabAt(i).getCustomView();
+//                    if (i == position) {
+//                        compatTextView.setBackgroundDrawable(ResourcesUtils.getResDrawable(getContext(), R.drawable.home_tab_background));
+//                    } else {
+//                        compatTextView.setBackgroundDrawable(null);
+//                    }
+//
+//                }
+//
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
 
     }
 

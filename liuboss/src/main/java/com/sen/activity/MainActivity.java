@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 
 import com.sen.base.BaseActivity;
 import com.sen.liuboss.R;
-import com.sen.uitls.MainActFragmentFactory;
+import com.sen.factory.MainActFragmentFactory;
 import com.sen.uitls.ResourcesUtils;
 import com.sen.uitls.StatusBarCompat;
 
