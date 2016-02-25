@@ -12,6 +12,7 @@ import android.view.WindowManager;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sen.liuboss.R;
+import com.sen.mode.ClassChildItemBean;
 import com.sen.uitls.ImageLoadOptions;
 
 import java.util.List;
@@ -19,12 +20,29 @@ import java.util.List;
 /**
  * Created by Sen on 2016/2/22.
  */
-public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRecyclerAdapter.ViewHolder> {
-    private List<String> mData;
+public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRecyclerAdapter.ViewHolder> implements View.OnClickListener{
+    private List<ClassChildItemBean> mData;
     private Context mContext;
-    public ClassChildRecyclerAdapter(Context context, List<String> data){
+    public ClassChildRecyclerAdapter(Context context, List<ClassChildItemBean> data){
         mContext =context;
         mData = data;
+    }
+    private OnItemClickListener onItemClickListener= null;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+       if (onItemClickListener!=null){
+           //onItemClickListener.onItemClick(v,position);
+       }
+    }
+
+    //Item click thing
+    public static interface OnItemClickListener{
+        void  onItemClick(View view , int position);
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -48,8 +66,8 @@ public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRe
         holder.mImageView.setLayoutParams(params);
 
         holder.mImageView.setTag(mData.get(position));
-        holder.mTextView.setText(""+position+"对于RecyclerView里面的某个元素，ViewHolder持有了该元素的布局和数据信息。我们实现ViewHolder时，最好可以添加一些属性，来缓存一些需要花费资源处理的结果。");
-        ImageLoader.getInstance().displayImage(mData.get(position), holder.mImageView, ImageLoadOptions.getBannerImageOptions());
+        holder.mTextView.setText(""+position+mData.get(position).getDes());
+        ImageLoader.getInstance().displayImage(mData.get(position).getUrl(), holder.mImageView, ImageLoadOptions.getBannerImageOptions());
 
     }
 
