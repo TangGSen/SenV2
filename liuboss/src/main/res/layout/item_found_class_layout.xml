@@ -29,6 +29,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
+            android:textColor="@color/primary_text"
             android:text="@string/app_name"
             android:textSize="@dimen/fragment_font_14sp" />
 
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/item_des_text"
             android:layout_marginTop="@dimen/frgment_login_4dp"
+            android:layout_marginRight="@dimen/frgment_login_8dp"
             android:ellipsize="end"
             android:gravity="left"
             android:textColor="@color/common_orange_pressed_color"

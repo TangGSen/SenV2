@@ -75,7 +75,7 @@ public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRe
         ClassChildItemBean classChildItemBean = mData.get(position);
         holder.mImageView.setTag(classChildItemBean.getImgUrl());
         holder.mDesTxtView.setText(classChildItemBean.getDesTxt());
-        holder.mPriceTxtView.setText("$"+classChildItemBean.getPriceTxt());
+        holder.mPriceTxtView.setText("¥ "+classChildItemBean.getPriceTxt());
         holder.mLoveCountTxtVeiw.setText(classChildItemBean.getLoveCount()+"");
         ImageLoader.getInstance().displayImage(classChildItemBean.getImgUrl(), holder.mImageView, ImageLoadOptions.getBannerImageOptions());
 

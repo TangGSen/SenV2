@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SenV20.iml" filepath="$PROJECT_DIR$/SenV20.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SenV21.iml" filepath="$PROJECT_DIR$/SenV21.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/liuboss/liuboss.iml" filepath="$PROJECT_DIR$/liuboss/liuboss.iml" />
     </modules>
