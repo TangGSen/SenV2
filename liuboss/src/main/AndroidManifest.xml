@@ -30,6 +30,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.sen.activity.details.ActFoundChildItemDeatil"
+            android:theme="@style/ActivityTheme.Base"
+            />
+
 
 
 

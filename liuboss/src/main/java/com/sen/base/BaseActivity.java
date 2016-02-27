@@ -12,10 +12,20 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 		init();
 		initView();
+		dealAdaptationToPhone();
 		initData();
 		initActionBar();
 
 	}
+
+	/**
+	 * 处理手机适配
+	 */
+	protected  void dealAdaptationToPhone(){
+
+	};
+
+
 
 	protected void initData() {
 	}

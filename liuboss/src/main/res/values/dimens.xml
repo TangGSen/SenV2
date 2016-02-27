@@ -16,4 +16,5 @@
     <dimen name="home_tab_dimens">56dp</dimen>
     <dimen name="frgment_login_4dp">4dp</dimen>
     <dimen name="common_48dp">48dp</dimen>
+    <dimen name="header_height">250dp</dimen>
 </resources>

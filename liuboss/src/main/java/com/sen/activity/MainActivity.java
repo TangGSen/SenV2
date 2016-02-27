@@ -42,8 +42,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
        StatusBarCompat.compat(this, ResourcesUtils.getResColor(this, R.color.colorPrimaryDark));
         ButterKnife.bind(this);
-        initFragmentSelect();
-        initTabView();
+
 
     }
 
@@ -53,6 +52,9 @@ public class MainActivity extends BaseActivity {
         tabTiles = ResourcesUtils.getStringArray(this, R.array.tabButtonItemName);
         tabItemDrawableNormal = new int[]{R.drawable.ic_tab_home_normal, R.drawable.ic_tab_classification_normal, R.drawable.ic_tab_car_normal, R.drawable.ic_tab_personal_normal};
         tabItemDrawableSelected = new int[]{R.drawable.ic_tab_home_selected, R.drawable.ic_tab_classification_selected, R.drawable.ic_tab_car_selected, R.drawable.ic_tab_personal_selected};
+
+        initFragmentSelect();
+        initTabView();
     }
 
     private void initFragmentSelect() {
@@ -100,7 +102,7 @@ public class MainActivity extends BaseActivity {
 
 
         AppCompatTextView textView = (AppCompatTextView) layout_buttom_tab.getTabAt(0).getCustomView();
-        ;
+        
         changeSelecteTabColor(textView, tabItemDrawableSelected[0], true);
 
     }

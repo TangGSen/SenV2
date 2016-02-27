@@ -1,5 +1,6 @@
 package com.sen.fragment.main.found;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.sen.activity.details.ActFoundChildItemDeatil;
 import com.sen.adapter.ClassChildRecyclerAdapter;
 import com.sen.base.BaseFragment;
 import com.sen.liuboss.R;
@@ -55,6 +57,8 @@ public class FoundChildFragment extends BaseFragment {
         adapter.setOnItemClickListener(new ClassChildRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position, ClassChildItemBean childItemBean) {
+                Intent intent = new Intent(getContext(), ActFoundChildItemDeatil.class);
+                getContext().startActivity(intent);
                 Toast.makeText(getContext(),position+"___"+childItemBean.getDesTxt(),Toast.LENGTH_SHORT).show();
             }
         });
