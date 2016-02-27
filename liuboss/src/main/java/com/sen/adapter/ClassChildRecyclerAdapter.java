@@ -34,7 +34,7 @@ public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRe
 
     //Item click thing
     public  interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position,ClassChildItemBean childItemBean);
     }
 
     public  void setOnItemClickListener(OnItemClickListener onItemClickListener){
@@ -45,7 +45,7 @@ public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRe
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_new_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_found_class_layout, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;
@@ -67,14 +67,15 @@ public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRe
                 @Override
                 public void onClick(View v) {
 
-                    onItemClickListener.onItemClick(holder.itemView, position);
+                    onItemClickListener.onItemClick(holder.itemView, position,mData.get(position));
                 }
 
             });
         }
-        holder.mImageView.setTag(mData.get(position));
-        holder.mTextView.setText("" + position + mData.get(position).getDes());
-        ImageLoader.getInstance().displayImage(mData.get(position).getUrl(), holder.mImageView, ImageLoadOptions.getBannerImageOptions());
+        ClassChildItemBean classChildItemBean = mData.get(position);
+        holder.mImageView.setTag(classChildItemBean.getImgUrl());
+        holder.mTextView.setText(classChildItemBean.getDesTxt());
+        ImageLoader.getInstance().displayImage(classChildItemBean.getImgUrl(), holder.mImageView, ImageLoadOptions.getBannerImageOptions());
 
     }
 
@@ -90,8 +91,8 @@ public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRe
 
         public ViewHolder(View view) {
             super(view);
-            mTextView = (AppCompatTextView) view.findViewById(R.id.des_text);
-            mImageView = (AppCompatImageView) view.findViewById(R.id.new_imageview);
+            mTextView = (AppCompatTextView) view.findViewById(R.id.item_des_text);
+            mImageView = (AppCompatImageView) view.findViewById(R.id.item_imageview);
         }
 
 

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.sen.adapter.ClassChildRecyclerAdapter;
 import com.sen.base.BaseFragment;
 import com.sen.liuboss.R;
-import com.sen.mode.HomeNewBean;
+import com.sen.mode.ClassChildItemBean;
 
 import java.util.List;
 
@@ -49,12 +49,13 @@ public class FoundChildFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        HomeNewBean home = new HomeNewBean();
-        List<String> data =home.getData();
-        ClassChildRecyclerAdapter adapter = new ClassChildRecyclerAdapter(getActivity(),home.getData());
+        ClassChildItemBean classChildItemBean = new ClassChildItemBean();
+        List<ClassChildItemBean> data =classChildItemBean.getData();
+        ClassChildRecyclerAdapter adapter = new ClassChildRecyclerAdapter(getActivity(),data);
         adapter.setOnItemClickListener(new ClassChildRecyclerAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view, int position, ClassChildItemBean childItemBean) {
+                Toast.makeText(getContext(),position+"___"+childItemBean.getDesTxt(),Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView_new.setAdapter(adapter);
