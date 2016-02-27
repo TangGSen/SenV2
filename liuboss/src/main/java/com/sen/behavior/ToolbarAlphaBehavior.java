@@ -28,6 +28,23 @@ public class ToolbarAlphaBehavior extends CoordinatorLayout.Behavior<Toolbar> {
         return true;
     }
 
+    @Override
+    public boolean onNestedFling(CoordinatorLayout coordinatorLayout, Toolbar child, View target, float velocityX, float velocityY, boolean consumed) {
+        startOffset = 0;
+        endOffset = context.getResources().getDimensionPixelOffset(R.dimen.header_height) - child.getHeight();
+        offset += velocityY;
+        if (offset <= startOffset) {  //alpha为0
+            child.getBackground().setAlpha(0);
+        } else if (offset > startOffset && offset < endOffset) { //alpha为0到255
+            float precent = (float) (offset - startOffset) / endOffset;
+            int alpha = Math.round(precent * 255);
+            child.getBackground().setAlpha(alpha);
+        } else if (offset >= endOffset) {  //alpha为255
+            child.getBackground().setAlpha(255);
+        }
+
+        return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed);
+    }
 
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, Toolbar toolbar, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
@@ -43,6 +60,8 @@ public class ToolbarAlphaBehavior extends CoordinatorLayout.Behavior<Toolbar> {
         } else if (offset >= endOffset) {  //alpha为255
             toolbar.getBackground().setAlpha(255);
         }
+
+
     }
 
 }
