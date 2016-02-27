@@ -74,7 +74,9 @@ public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRe
         }
         ClassChildItemBean classChildItemBean = mData.get(position);
         holder.mImageView.setTag(classChildItemBean.getImgUrl());
-        holder.mTextView.setText(classChildItemBean.getDesTxt());
+        holder.mDesTxtView.setText(classChildItemBean.getDesTxt());
+        holder.mPriceTxtView.setText("$"+classChildItemBean.getPriceTxt());
+        holder.mLoveCountTxtVeiw.setText(classChildItemBean.getLoveCount()+"");
         ImageLoader.getInstance().displayImage(classChildItemBean.getImgUrl(), holder.mImageView, ImageLoadOptions.getBannerImageOptions());
 
     }
@@ -86,12 +88,14 @@ public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRe
 
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public AppCompatTextView mTextView;
+        public AppCompatTextView mDesTxtView,mPriceTxtView,mLoveCountTxtVeiw;
         public AppCompatImageView mImageView;
 
         public ViewHolder(View view) {
             super(view);
-            mTextView = (AppCompatTextView) view.findViewById(R.id.item_des_text);
+            mDesTxtView = (AppCompatTextView) view.findViewById(R.id.item_des_text);
+            mPriceTxtView = (AppCompatTextView) view.findViewById(R.id.item_txt_price);
+            mLoveCountTxtVeiw = (AppCompatTextView) view.findViewById(R.id.item_txt_love);
             mImageView = (AppCompatImageView) view.findViewById(R.id.item_imageview);
         }
 
