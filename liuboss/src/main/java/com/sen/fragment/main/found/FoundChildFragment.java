@@ -6,6 +6,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.sen.adapter.ClassChildRecyclerAdapter;
 import com.sen.base.BaseFragment;
@@ -51,6 +52,11 @@ public class FoundChildFragment extends BaseFragment {
         HomeNewBean home = new HomeNewBean();
         List<String> data =home.getData();
         ClassChildRecyclerAdapter adapter = new ClassChildRecyclerAdapter(getActivity(),home.getData());
+        adapter.setOnItemClickListener(new ClassChildRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+            }
+        });
         recyclerView_new.setAdapter(adapter);
     }
 

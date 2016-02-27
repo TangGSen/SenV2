@@ -20,53 +20,60 @@ import java.util.List;
 /**
  * Created by Sen on 2016/2/22.
  */
-public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRecyclerAdapter.ViewHolder> implements View.OnClickListener{
+public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRecyclerAdapter.ViewHolder> {
     private List<ClassChildItemBean> mData;
     private Context mContext;
-    public ClassChildRecyclerAdapter(Context context, List<ClassChildItemBean> data){
-        mContext =context;
+
+    public ClassChildRecyclerAdapter(Context context, List<ClassChildItemBean> data) {
+        mContext = context;
         mData = data;
     }
-    private OnItemClickListener onItemClickListener= null;
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.onItemClickListener = listener;
-    }
+    private OnItemClickListener onItemClickListener = null;
 
-    @Override
-    public void onClick(View v) {
-       if (onItemClickListener!=null){
-           //onItemClickListener.onItemClick(v,position);
-       }
-    }
 
     //Item click thing
-    public static interface OnItemClickListener{
-        void  onItemClick(View view , int position);
+    public  interface OnItemClickListener {
+        void onItemClick(View view, int position);
     }
+
+    public  void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener =onItemClickListener;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_new_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_new_layout, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
+
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        WindowManager windowManager = (WindowManager)mContext.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         windowManager.getDefaultDisplay().getMetrics(dm);
 
         ViewGroup.LayoutParams params = holder.mImageView.getLayoutParams();
-        params.height =(int) (dm.widthPixels * 0.5);
-        params.width =(int) (dm.widthPixels * 0.5);
+        params.height = (int) (dm.widthPixels * 0.5);
+        params.width = (int) (dm.widthPixels * 0.5);
         holder.mImageView.setLayoutParams(params);
+        if (onItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                    onItemClickListener.onItemClick(holder.itemView, position);
+                }
+
+            });
+        }
         holder.mImageView.setTag(mData.get(position));
-        holder.mTextView.setText(""+position+mData.get(position).getDes());
+        holder.mTextView.setText("" + position + mData.get(position).getDes());
         ImageLoader.getInstance().displayImage(mData.get(position).getUrl(), holder.mImageView, ImageLoadOptions.getBannerImageOptions());
 
     }
@@ -80,10 +87,13 @@ public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRe
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public AppCompatTextView mTextView;
         public AppCompatImageView mImageView;
-        public ViewHolder(View view){
+
+        public ViewHolder(View view) {
             super(view);
             mTextView = (AppCompatTextView) view.findViewById(R.id.des_text);
             mImageView = (AppCompatImageView) view.findViewById(R.id.new_imageview);
         }
+
+
     }
 }
