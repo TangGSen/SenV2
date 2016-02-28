@@ -1,7 +1,5 @@
 package com.sen.activity.details;
 
-import android.support.v7.widget.Toolbar;
-
 import com.sen.base.BaseActivity;
 import com.sen.liuboss.R;
 
@@ -11,8 +9,7 @@ import com.sen.liuboss.R;
 public class ActFoundChildItemDeatil extends BaseActivity {
     @Override
     protected void initView() {
-        setContentView(R.layout.actlayout_foundchild_item);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_behavior);
-        toolbar.getBackground().setAlpha(0);//toolbar透明度初始化为0
+        setContentView(R.layout.actfound_class_item_detail);
+
     }
 }

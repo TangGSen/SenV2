@@ -1,1 +1,1 @@
-include ':app', ':liuboss'
+include ':app', ':liuboss', ':demo'
