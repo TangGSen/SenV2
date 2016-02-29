@@ -3,7 +3,6 @@ package com.sen.activity.details;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -26,8 +25,8 @@ public class ActFoundChildItemDeatil extends BaseActivity {
     private Drawable bgBackDrawable;
     private Drawable bgShareDrawable;
 
-   private AppCompatTextView iv_back;
-   private AppCompatImageView iv_share;
+    private AppCompatImageView iv_back;
+    private AppCompatImageView iv_share;
 
     private Drawable bgToolbarDrawable;
     private ArrayList<String> urls = new ArrayList<>();
@@ -47,16 +46,10 @@ public class ActFoundChildItemDeatil extends BaseActivity {
         mPullPushLayout = (PullPushLayout) this.findViewById(R.id.pullpushlayout);
 
         item_detail_toolbar = (Toolbar) this.findViewById(R.id.item_detail_toolbar);
-        item_detail_toolbar.setNavigationIcon(null);
-        View toolBarView = View.inflate(this,R.layout.toolbar_detail_view,null);
+        View toolBarView = View.inflate(this, R.layout.toolbar_detail_view, null);
         item_detail_toolbar.addView(toolBarView);
-        iv_back = (AppCompatTextView) toolBarView.findViewById(R.id.iv_back);
+        iv_back = (AppCompatImageView) toolBarView.findViewById(R.id.iv_back);
         iv_share = (AppCompatImageView) toolBarView.findViewById(R.id.iv_share);
-
-
-
-
-
 
 
         urls.add("http://s.xnimg.cn/rrinvest/wap/events/2015/recruitment/img/banner.jpg");
@@ -95,7 +88,6 @@ public class ActFoundChildItemDeatil extends BaseActivity {
 
             }
         });
-
 
 
         bgBackDrawable = iv_back.getBackground();

@@ -2,19 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:gravity="center"
     >
-    <android.support.v7.widget.AppCompatTextView
+
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/iv_back"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_alignParentLeft="true"
-        android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
         android:background="@drawable/bg_circle"
-        android:drawableLeft="@drawable/arrow_left"
-         />
+        android:scaleType="centerInside"
+        android:src="@drawable/arrow_left"
+        />
 
 
     <android.support.v7.widget.AppCompatImageView
@@ -22,10 +20,10 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/frgment_login_8dp"
+        android:layout_marginRight="@dimen/frgment_login_16dp"
         android:background="@drawable/bg_circle"
         android:scaleType="centerInside"
-        android:src="@drawable/arrow_left"
+        android:src="@drawable/add_account"
         />
 
 
