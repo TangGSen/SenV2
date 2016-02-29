@@ -1,12 +1,10 @@
 package com.sen.widget;
 
 import android.content.Context;
-import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -30,7 +28,7 @@ import java.util.ArrayList;
  *
  *
  */
-public class ImageCycleView extends LinearLayout {
+public class ImageCycleViewForDetail extends LinearLayout {
 
     private ViewPager mViewpager;
 
@@ -63,11 +61,11 @@ public class ImageCycleView extends LinearLayout {
 
     private ImageCycleAdapter mAdvAdapter;
 
-    public ImageCycleView(Context context) {
+    public ImageCycleViewForDetail(Context context) {
         this(context, null);
     }
 
-    public ImageCycleView(Context context, AttributeSet attrs) {
+    public ImageCycleViewForDetail(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context);
     }
@@ -80,27 +78,7 @@ public class ImageCycleView extends LinearLayout {
         viewGroup = (LinearLayout) view.findViewById(R.id.viewGroup);
     }
 
-    /**
-     * 触摸停止计时器，抬起启动计时器
-     */
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-        stopImageTimerTask();// 停止图片滚动
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_UP:
-            case MotionEvent.ACTION_CANCEL:
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        startImageTimerTask();
-                    }
-                }, time);
-                break;
-        }
-
-        return super.dispatchTouchEvent(event);
-    }
 
     /**
      * 装填图片数据
@@ -146,56 +124,10 @@ public class ImageCycleView extends LinearLayout {
         addView(view);
     }
 
-    /**
-     * 图片轮播(手动控制自动轮播与否，便于资源控件）
-     */
-    public void startImageCycle() {
-        startImageTimerTask();
-    }
 
-    /**
-     * 暂停轮播—用于节省资源
-     */
-    public void stopImageCycle() {
-        stopImageTimerTask();
-    }
 
-    /**
-     * 图片滚动任务
-     */
-    public void startImageTimerTask() {
-        stopImageTimerTask();
-        // 图片滚动
-        if (isAutoCycle)
-            mHandler.postDelayed(mImageTimerTask, time);
-    }
 
-    /**
-     * 停止图片滚动任务
-     */
-    public void stopImageTimerTask() {
-        isStop = true;
-        mHandler.removeCallbacks(mImageTimerTask);
-    }
 
-    private Handler mHandler = new Handler();
-
-    /**
-     * 图片自动轮播Task
-     */
-    private Runnable mImageTimerTask = new Runnable() {
-        @Override
-        public void run() {
-            if (mImageViews != null) {
-                mViewpager.setCurrentItem(mViewpager.getCurrentItem() + 1);
-                if (!isStop) {  //if  isStop=true   //当你退出后 要把这个给停下来 不然 这个一直存在 就一直在后台循环
-                    if (isAutoCycle)
-                        mHandler.postDelayed(mImageTimerTask, time);
-                }
-
-            }
-        }
-    };
 
     /**
      * 轮播图片监听
@@ -203,8 +135,7 @@ public class ImageCycleView extends LinearLayout {
     private final class GuidePageChangeListener implements ViewPager.OnPageChangeListener {
         @Override
         public void onPageScrollStateChanged(int state) {
-            if (state == ViewPager.SCROLL_STATE_IDLE)
-                startImageTimerTask();
+
         }
 
         @Override

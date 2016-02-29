@@ -25,12 +25,9 @@ import java.util.ArrayList;
  * 修改：
  * 唐家森 by 2016/02/29
  * 为了适应我的项目，修改和删除东西
- * 1.指示点就是圆点
- * 2.如果viewPager Url 集合的size为1个时不显示指示点和不轮播图
- *
  *
  */
-public class ImageCycleView extends LinearLayout {
+public class ImageCycleView_Copy extends LinearLayout {
 
     private ViewPager mViewpager;
 
@@ -63,11 +60,11 @@ public class ImageCycleView extends LinearLayout {
 
     private ImageCycleAdapter mAdvAdapter;
 
-    public ImageCycleView(Context context) {
+    public ImageCycleView_Copy(Context context) {
         this(context, null);
     }
 
-    public ImageCycleView(Context context, AttributeSet attrs) {
+    public ImageCycleView_Copy(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context);
     }
@@ -89,7 +86,6 @@ public class ImageCycleView extends LinearLayout {
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
