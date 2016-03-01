@@ -11,9 +11,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 
 		init();
-		initView();
+		initView(savedInstanceState);
 		dealAdaptationToPhone();
-		initData();
+		initData(savedInstanceState);
 		initActionBar();
 
 	}
@@ -27,7 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
 
-	protected void initData() {
+	protected void initData(Bundle savedInstanceState) {
 	}
 
 	/**
@@ -38,8 +38,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 	/**
 	 * 初始化界面
+	 * @param savedInstanceState
 	 */
-	protected abstract void initView() ;
+	protected abstract void initView(Bundle savedInstanceState) ;
 
 	/**
 	 * 初始化

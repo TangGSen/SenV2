@@ -40,7 +40,7 @@ public class ActFoundChildItemDeatil extends BaseActivity {
     }
 
     @Override
-    protected void initView() {
+    protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.layout_class_item_datails);
         StatusBarCompat.compat(this, ResourcesUtils.getResColor(this, R.color.colorPrimaryDark));
         mPullPushLayout = (PullPushLayout) this.findViewById(R.id.pullpushlayout);
