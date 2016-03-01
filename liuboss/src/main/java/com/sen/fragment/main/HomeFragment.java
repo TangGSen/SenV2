@@ -7,10 +7,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 
 import com.sen.adapter.HomeActFragAdpter;
@@ -45,12 +45,12 @@ public class HomeFragment extends BaseFragment {
 
     private int tabCount ;
 
+
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_main_act_home, container, false);
         ButterKnife.bind(this, rootView);
-        //处理适配 设置比例
-        dealAdaptationToPhone();
+
 
         initTabView();
 
@@ -58,6 +58,7 @@ public class HomeFragment extends BaseFragment {
 
         return rootView;
     }
+
 
     private void initViewPager() {
 
@@ -138,14 +139,6 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void dealAdaptationToPhone() {
-        //获取TabLayout的高度然后设置CoordinatorLayout 的总高度
-        ViewTreeObserver vto = home_tablayout.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-
-                home_tablayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                int tablayoutHeight = home_tablayout.getHeight();
 
                 WindowManager windowManager = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
                 DisplayMetrics dm = new DisplayMetrics();
@@ -158,12 +151,19 @@ public class HomeFragment extends BaseFragment {
                 head_viewpager.setLayoutParams(params);
 
                 ViewGroup.LayoutParams collapsingLayoutParams = collapsingToolbarLayout.getLayoutParams();
-                collapsingLayoutParams.height = commomHeight + tablayoutHeight;
+                collapsingLayoutParams.height = commomHeight + getTabLayoutHeight();
                 collapsingToolbarLayout.setLayoutParams(collapsingLayoutParams);
 
-            }
-        });
 
+    }
+
+    private int getTabLayoutHeight(){
+        int actionBarHeight =0;
+        TypedValue tv = new TypedValue();
+        if (getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getContext().getResources().getDisplayMetrics());
+        }
+        return  actionBarHeight;
     }
 
     @Override
