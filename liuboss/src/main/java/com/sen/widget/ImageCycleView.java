@@ -32,7 +32,7 @@ import java.util.ArrayList;
  */
 public class ImageCycleView extends LinearLayout {
 
-    private ViewPager mViewpager;
+    private SwitchingAbleViewPager mViewpager;
 
     private LinearLayout viewGroup;
 
@@ -75,7 +75,8 @@ public class ImageCycleView extends LinearLayout {
     private void initView(Context context) {
         this.context = context;
         view = LayoutInflater.from(context).inflate(R.layout.widget_image_cycle_view, null);
-        mViewpager = (ViewPager) view.findViewById(R.id.adv_pager);
+        mViewpager = (SwitchingAbleViewPager) view.findViewById(R.id.adv_pager);
+        mViewpager.setCanSwitching(true);
         mViewpager.setOnPageChangeListener(new GuidePageChangeListener());
         viewGroup = (LinearLayout) view.findViewById(R.id.viewGroup);
     }

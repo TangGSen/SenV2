@@ -1,21 +1,19 @@
 package com.sen.fragment.main;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.sen.adapter.HomeActFragAdpter;
 import com.sen.base.BaseFragment;
 import com.sen.liuboss.R;
+import com.sen.uitls.DisplayUtils;
 import com.sen.uitls.ResourcesUtils;
 import com.sen.widget.ImageCycleView;
 
@@ -43,7 +41,7 @@ public class HomeFragment extends BaseFragment {
 
     private String tabTiles[];
 
-    private int tabCount ;
+    private int tabCount;
 
 
     @Override
@@ -53,7 +51,6 @@ public class HomeFragment extends BaseFragment {
 
 
         initTabView();
-
 
 
         return rootView;
@@ -68,7 +65,7 @@ public class HomeFragment extends BaseFragment {
         //init tab data
 
         tabTiles = ResourcesUtils.getStringArray(getContext(), R.array.taHomeItemName);
-         HomeActFragAdpter fragAdapter = new HomeActFragAdpter(getChildFragmentManager(), getContext(), tabTiles);
+        HomeActFragAdpter fragAdapter = new HomeActFragAdpter(getChildFragmentManager(), getContext(), tabTiles);
         home_viewpager_shows.setAdapter(fragAdapter);
         home_tablayout.setupWithViewPager(home_viewpager_shows);
 
@@ -83,7 +80,7 @@ public class HomeFragment extends BaseFragment {
 //        home_tablayout.getTabAt(0).select(); 无效
         AppCompatTextView compatTextView = (AppCompatTextView) home_tablayout.getTabAt(0).getCustomView();
         compatTextView.setSelected(true);
-        compatTextView.setBackgroundDrawable(ResourcesUtils.getResDrawable(getContext(),R.drawable.home_tab_background));
+        compatTextView.setBackgroundDrawable(ResourcesUtils.getResDrawable(getContext(), R.drawable.home_tab_background));
         home_viewpager_shows.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -95,14 +92,13 @@ public class HomeFragment extends BaseFragment {
                 //重设textview 的背景
                 for (int i = 0; i < tabCount; i++) {
                     AppCompatTextView compatTextView = (AppCompatTextView) home_tablayout.getTabAt(i).getCustomView();
-                    if (i==position){
-                        compatTextView.setBackgroundDrawable(ResourcesUtils.getResDrawable(getContext(),R.drawable.home_tab_background));
-                    }else{
+                    if (i == position) {
+                        compatTextView.setBackgroundDrawable(ResourcesUtils.getResDrawable(getContext(), R.drawable.home_tab_background));
+                    } else {
                         compatTextView.setBackgroundDrawable(null);
                     }
 
                 }
-
 
 
             }
@@ -114,7 +110,6 @@ public class HomeFragment extends BaseFragment {
         });
 
     }
-
 
 
     @Override
@@ -132,39 +127,32 @@ public class HomeFragment extends BaseFragment {
         });
 
 
-
-
     }
-
 
 
     @Override
     protected void dealAdaptationToPhone() {
 
-                WindowManager windowManager = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
-                DisplayMetrics dm = new DisplayMetrics();
-                windowManager.getDefaultDisplay().getMetrics(dm);
+        int commomHeight = (int) (DisplayUtils.getInstance(getActivity()).getScreenSize()[0] * 0.4172);
 
-                int commomHeight = (int) (dm.widthPixels * 0.4518);
+        ViewGroup.LayoutParams params = head_viewpager.getLayoutParams();
+        params.height = commomHeight;
+        head_viewpager.setLayoutParams(params);
 
-                ViewGroup.LayoutParams params = head_viewpager.getLayoutParams();
-                params.height = commomHeight;
-                head_viewpager.setLayoutParams(params);
-
-                ViewGroup.LayoutParams collapsingLayoutParams = collapsingToolbarLayout.getLayoutParams();
-                collapsingLayoutParams.height = commomHeight + getTabLayoutHeight();
-                collapsingToolbarLayout.setLayoutParams(collapsingLayoutParams);
+        ViewGroup.LayoutParams collapsingLayoutParams = collapsingToolbarLayout.getLayoutParams();
+        collapsingLayoutParams.height = commomHeight + getTabLayoutHeight();
+        collapsingToolbarLayout.setLayoutParams(collapsingLayoutParams);
 
 
     }
 
-    private int getTabLayoutHeight(){
-        int actionBarHeight =0;
+    private int getTabLayoutHeight() {
+        int actionBarHeight = 0;
         TypedValue tv = new TypedValue();
         if (getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
             actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getContext().getResources().getDisplayMetrics());
         }
-        return  actionBarHeight;
+        return actionBarHeight;
     }
 
     @Override
@@ -179,7 +167,6 @@ public class HomeFragment extends BaseFragment {
         super.onStop();
         head_viewpager.stopImageCycle();
     }
-
 
 
     //自定义TabView

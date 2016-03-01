@@ -21,7 +21,7 @@
                 android:layout_height="240dp">
 
                 <com.sen.widget.ImageCycleViewForDetail
-                    android:id="@+id/head2_viewpager"
+                    android:id="@+id/head_viewpager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"

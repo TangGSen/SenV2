@@ -3,7 +3,6 @@ package com.sen.activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatTextView;
@@ -39,7 +38,6 @@ public class MainActivity extends BaseActivity {
     int tabItemDrawableSelected[];
     private int tabCount;
 
-    Fragment mCurrentFragment;
     FragmentManager mFragmentManager;
 
     private HomeFragment mHomeFragment;

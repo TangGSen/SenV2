@@ -1,18 +1,18 @@
 package com.sen.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sen.liuboss.R;
 import com.sen.mode.ClassChildItemBean;
+import com.sen.uitls.DisplayUtils;
 import com.sen.uitls.ImageLoadOptions;
 
 import java.util.List;
@@ -23,10 +23,12 @@ import java.util.List;
 public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRecyclerAdapter.ViewHolder> {
     private List<ClassChildItemBean> mData;
     private Context mContext;
+    int width;
 
     public ClassChildRecyclerAdapter(Context context, List<ClassChildItemBean> data) {
         mContext = context;
         mData = data;
+        width =DisplayUtils.getInstance((Activity) mContext).getScreenSize()[0];
     }
 
     private OnItemClickListener onItemClickListener = null;
@@ -54,13 +56,12 @@ public class ClassChildRecyclerAdapter extends RecyclerView.Adapter<ClassChildRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(dm);
+
+
 
         ViewGroup.LayoutParams params = holder.mImageView.getLayoutParams();
-        params.height = (int) (dm.widthPixels * 0.5);
-        params.width = (int) (dm.widthPixels * 0.5);
+        params.height = (int) (width * 0.5);
+        params.width = (int) (width * 0.5);
         holder.mImageView.setLayoutParams(params);
         if (onItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {

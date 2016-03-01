@@ -49,22 +49,38 @@ public class ActFoundChildItemDeatil extends BaseActivity {
         View toolBarView = View.inflate(this, R.layout.toolbar_detail_view, null);
         item_detail_toolbar.addView(toolBarView);
         iv_back = (AppCompatImageView) toolBarView.findViewById(R.id.iv_back);
-
-
         iv_share = (AppCompatImageView) toolBarView.findViewById(R.id.iv_share);
 
+        //初始化背景
+        bgBackDrawable = iv_back.getBackground();
+        bgBackDrawable.setAlpha(alphaMax);
+        bgShareDrawable = iv_share.getBackground();
+        bgShareDrawable.setAlpha(alphaMax);
+        //开始toolbar 是透明的
+        bgToolbarDrawable = item_detail_toolbar.getBackground();
+        bgToolbarDrawable.setAlpha(0);
+    }
 
-        urls.add("http://s.xnimg.cn/rrinvest/wap/events/2015/recruitment/img/banner.jpg");
-        urls.add("http://a.xnimg.cn/rrinvest/img/bannerwap/2015-11-11.jpg");
-        urls.add("http://s.xnimg.cn/rrinvest/wap/events/2015/fall/img/appbanner.png");
-        urls.add("http://fmn.rrfmn.com/fmn074/20150413/1720/original_WyLG_60c800005a561e83.jpg");
-        ImageCycleViewForDetail head_viewpager = (ImageCycleViewForDetail) this.findViewById(R.id.head2_viewpager);
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        super.initData(savedInstanceState);
+        urls.add("http://img4.duitang.com/uploads/item/201112/03/20111203202432_BPPR3.thumb.600_0.jpg");
+        urls.add("http://pic.nipic.com/2007-11-14/20071114232440935_2.jpg");
+        urls.add("http://img4.duitang.com/uploads/item/201112/03/20111203202432_BPPR3.thumb.600_0.jpg");
+        urls.add("http://pic.nipic.com/2007-11-14/20071114232440935_2.jpg");
+        ImageCycleViewForDetail head_viewpager = (ImageCycleViewForDetail) this.findViewById(R.id.head_viewpager);
         head_viewpager.setImageResources(urls, new ImageCycleViewForDetail.ImageCycleViewListener() {
             @Override
             public void onImageClick(int position, View imageView) {
 
             }
         });
+
+        initLinster();
+
+    }
+
+    private void initLinster() {
 
         mPullPushLayout.setOnTouchEventMoveListenre(new PullPushLayout.OnTouchEventMoveListenre() {
 
@@ -91,17 +107,5 @@ public class ActFoundChildItemDeatil extends BaseActivity {
             }
         });
 
-
-        bgBackDrawable = iv_back.getBackground();
-        bgBackDrawable.setAlpha(alphaMax);
-        bgShareDrawable = iv_share.getBackground();
-        bgShareDrawable.setAlpha(alphaMax);
-        //开始toolbar 是透明的
-        bgToolbarDrawable = item_detail_toolbar.getBackground();
-        bgToolbarDrawable.setAlpha(0);
-
-
     }
-
-
 }
