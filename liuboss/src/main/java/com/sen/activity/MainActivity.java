@@ -78,11 +78,12 @@ public class MainActivity extends BaseActivity {
             mPersonalCenterFragment = (PersonalCenterFragment) mFragmentManager.findFragmentByTag(tabTiles[3]);
             layout_buttom_tab.getTabAt(currentFragPosition).select();
 
+
         }
 
         setSelectedFragment(currentFragPosition);
 
-        //  initFragmentSelect();
+
 
 
     }
@@ -156,15 +157,6 @@ public class MainActivity extends BaseActivity {
     }
 
 
-//
-//    private void initFragmentSelect() {
-//        mFragmentManager = getSupportFragmentManager();
-//        //Home is selected
-//        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-//        mCurrentFragment = MainActFragmentFactory.createFragment(0);
-//        transaction.add(R.id.home_layout_content, mCurrentFragment, tabTiles[0]).commit();
-//
-//    }
 
     private void initTabView() {
         tabCount = tabItemDrawableNormal.length;
@@ -172,7 +164,6 @@ public class MainActivity extends BaseActivity {
             TabLayout.Tab tab = layout_buttom_tab.newTab();
             tab.setCustomView(getTabView(tabItemDrawableNormal[i], tabTiles[i]));
             layout_buttom_tab.addTab(tab, i);
-
         }
 
         layout_buttom_tab.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -181,7 +172,6 @@ public class MainActivity extends BaseActivity {
                 int positionTab = tab.getPosition();
                 AppCompatTextView textView = (AppCompatTextView) tab.getCustomView();
                 changeSelecteTabColor(textView, tabItemDrawableSelected[positionTab], true);
-                // switchContent(mCurrentFragment, MainActFragmentFactory.createFragment(positionTab), tabTiles[positionTab]);
                 setSelectedFragment(positionTab);
             }
 
@@ -234,17 +224,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-//    public void switchContent(Fragment from, Fragment to, String flag) {
-//        if (mCurrentFragment != to) {
-//            mCurrentFragment = to;
-//            FragmentTransaction transaction = mFragmentManager.beginTransaction().setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
-//            if (!to.isAdded()) {    // 先判断是否被add过
-//                transaction.hide(from).add(R.id.home_layout_content, to, flag).commit(); // 隐藏当前的fragment，add下一个到Activity中
-//            } else {
-//                transaction.hide(from).show(to).commit(); // 隐藏当前的fragment，显示下一个
-//            }
-//        }
-//    }
+
 
 
 }
