@@ -76,6 +76,7 @@ public class MainActivity extends BaseActivity {
             mFoundFragment = (FoundFragment) mFragmentManager.findFragmentByTag(tabTiles[1]);
             mShoppingCartFragment = (ShoppingCartFragment) mFragmentManager.findFragmentByTag(tabTiles[2]);
             mPersonalCenterFragment = (PersonalCenterFragment) mFragmentManager.findFragmentByTag(tabTiles[3]);
+
             layout_buttom_tab.getTabAt(currentFragPosition).select();
 
 

@@ -69,7 +69,7 @@ public class FoundFragment extends BaseFragment {
     private void initTabView() {
         //init tab data
         tabTiles = ResourcesUtils.getStringArray(getContext(), R.array.taHomeItemName);
-         FoundFragTabAdpter fragAdapter = new FoundFragTabAdpter(getActivity().getSupportFragmentManager(), getContext(), tabTiles);
+         FoundFragTabAdpter fragAdapter = new FoundFragTabAdpter(getChildFragmentManager(), getContext(), tabTiles);
         class_viewpager_shows.setAdapter(fragAdapter);
         class_tablayout.setupWithViewPager(class_viewpager_shows);
 

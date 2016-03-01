@@ -66,8 +66,9 @@ public class HomeFragment extends BaseFragment {
 
     private void initTabView() {
         //init tab data
+
         tabTiles = ResourcesUtils.getStringArray(getContext(), R.array.taHomeItemName);
-         HomeActFragAdpter fragAdapter = new HomeActFragAdpter(getActivity().getSupportFragmentManager(), getContext(), tabTiles);
+         HomeActFragAdpter fragAdapter = new HomeActFragAdpter(getChildFragmentManager(), getContext(), tabTiles);
         home_viewpager_shows.setAdapter(fragAdapter);
         home_tablayout.setupWithViewPager(home_viewpager_shows);
 
@@ -178,6 +179,8 @@ public class HomeFragment extends BaseFragment {
         super.onStop();
         head_viewpager.stopImageCycle();
     }
+
+
 
     //自定义TabView
     public View getTabView(String text) {

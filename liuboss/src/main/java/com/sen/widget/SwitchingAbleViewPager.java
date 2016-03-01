@@ -7,16 +7,17 @@ import android.view.MotionEvent;
 
 /**
  * Created by Sen on 2016/2/15.
+ * 是否需要滑动ViewPager
  */
-public class NoSwitchingViewPager extends ViewPager {
+public class SwitchingAbleViewPager extends ViewPager {
     //
     private boolean isCanSwitching = false;
 
-    public NoSwitchingViewPager(Context context) {
+    public SwitchingAbleViewPager(Context context) {
         super(context);
     }
 
-    public NoSwitchingViewPager(Context context, AttributeSet attrs) {
+    public SwitchingAbleViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -58,4 +59,5 @@ public class NoSwitchingViewPager extends ViewPager {
             return false;
         }
     }
+
 }

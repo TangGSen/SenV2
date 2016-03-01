@@ -49,6 +49,8 @@ public class ActFoundChildItemDeatil extends BaseActivity {
         View toolBarView = View.inflate(this, R.layout.toolbar_detail_view, null);
         item_detail_toolbar.addView(toolBarView);
         iv_back = (AppCompatImageView) toolBarView.findViewById(R.id.iv_back);
+
+
         iv_share = (AppCompatImageView) toolBarView.findViewById(R.id.iv_share);
 
 
