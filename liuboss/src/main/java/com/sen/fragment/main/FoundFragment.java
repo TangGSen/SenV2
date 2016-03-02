@@ -1,22 +1,20 @@
 package com.sen.fragment.main;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.sen.adapter.FoundFragTabAdpter;
 import com.sen.base.BaseFragment;
 import com.sen.liuboss.R;
+import com.sen.uitls.DisplayUtils;
 import com.sen.uitls.ResourcesUtils;
 
 import butterknife.Bind;
@@ -43,17 +41,14 @@ public class FoundFragment extends BaseFragment {
 
     @Override
     protected void dealAdaptationToPhone() {
-        WindowManager windowManager = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(dm);
 
         ViewGroup.LayoutParams params = tv_search.getLayoutParams();
-        params.width = (int) (dm.widthPixels * 0.618);
+        params.width = (int) (DisplayUtils.getInstance(getActivity()).getScreenSize()[0] * 0.618);
         tv_search.setLayoutParams(params);
 
         //动态设置coordinatorLayout 的marginTop,因为在小米的手机xml 的24dp中显示不正常
         FrameLayout.LayoutParams coordinatorParams = (FrameLayout.LayoutParams) coordinatorLayout.getLayoutParams();
-        coordinatorParams.setMargins(0,getStatusBarHeight(),0,0);
+        coordinatorParams.setMargins(0,ResourcesUtils.getStatusBarHeight(getContext()),0,0);
         coordinatorLayout.setLayoutParams(coordinatorParams);
     }
 
@@ -61,7 +56,6 @@ public class FoundFragment extends BaseFragment {
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_main_act_found, container, false);
         ButterKnife.bind(this, rootView);
-        dealAdaptationToPhone();
         initTabView();
         return rootView;
     }
@@ -118,14 +112,7 @@ public class FoundFragment extends BaseFragment {
 
 
 
-    public int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
+
 
     private void initToolbarAndTab(View rootView) {
 

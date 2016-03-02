@@ -22,9 +22,7 @@
     <color name="common_orange_color">#FE812C</color>
     <color name="common_orange_pressed_color">#E96F1B</color>
     <color name="half_transparent">#00FFFFFF</color>
-
-
-
+    <color name="personal_toobar_bg">#80388E3C</color>
 
 
 </resources>

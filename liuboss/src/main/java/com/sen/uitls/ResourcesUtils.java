@@ -32,4 +32,13 @@ public class ResourcesUtils {
     public static String[] getStringArray(Context context,int id) {
         return getResources(context).getStringArray(id);
     }
+
+    public static int getStatusBarHeight(Context context) {
+        int result = 0;
+        int resourceId = getResources(context).getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources(context).getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 }
