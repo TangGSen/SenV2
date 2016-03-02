@@ -4,10 +4,10 @@ import android.animation.Animator;
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 
@@ -19,7 +19,8 @@ import android.view.animation.Interpolator;
 
 public class ToolbarShowBehavior extends CoordinatorLayout.Behavior<View> {
 
-    private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
+//    private static final Interpolator INTERPOLATOR = new FastOutSlowInInterpolator();
+    private static final Interpolator INTERPOLATOR = new AccelerateDecelerateInterpolator();
 
 
     private int sinceDirectionChange;
@@ -79,7 +80,7 @@ public class ToolbarShowBehavior extends CoordinatorLayout.Behavior<View> {
 
 
     private void show(final View view) {
-        ViewPropertyAnimator animator = view.animate().translationY(0).setInterpolator(INTERPOLATOR).setDuration(200);
+        ViewPropertyAnimator animator = view.animate().translationY(0).setInterpolator(INTERPOLATOR).setDuration(800);
         animator.setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
