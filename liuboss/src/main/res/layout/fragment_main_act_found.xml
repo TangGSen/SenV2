@@ -20,7 +20,7 @@
             android:layout_height="48dp"
             android:background="@color/colorPrimaryDark"
             android:minHeight="48dp"
-            app:layout_scrollFlags="scroll|enterAlways">
+           >
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_search"
@@ -43,7 +43,7 @@
             android:id="@+id/class_tablayout"
             style="@style/TabLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/common_48dp"
+            android:layout_height="@dimen/common_40dp"
             android:layout_gravity="bottom"
             android:background="@color/tab_bgcolor"
 
