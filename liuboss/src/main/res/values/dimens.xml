@@ -19,4 +19,6 @@
     <dimen name="common_38dp">38dp</dimen>
     <dimen name="header_height">250dp</dimen>
     <dimen name="common_40dp">40dp</dimen>
+    <dimen name="common_8dp">8dp</dimen>
+    <dimen name="commen_0dp">0dp</dimen>
 </resources>

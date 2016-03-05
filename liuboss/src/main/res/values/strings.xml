@@ -17,5 +17,6 @@
     <string name="frag_regis_one_haved_count">已有账号登录</string>
     <string name="frag_regis_error_phone">输入不是手机号码</string>
     <string name="class_serach_txt">搜你喜欢的</string>
+    <string name="str_user_sign">这个家伙很懒，什么也没留下...</string>
 
 </resources>
