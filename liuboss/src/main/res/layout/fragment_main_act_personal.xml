@@ -99,7 +99,21 @@
         android:id="@+id/class_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/personal_toobar_bg" />
+        android:background="@color/personal_toobar_bg" >
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_love_person"
+            android:layout_gravity="left"
+            />
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/frgment_login_16dp"
+            android:src="@drawable/ic_love_person"/>
+        </android.support.v7.widget.Toolbar>
 
 
 </android.support.design.widget.CoordinatorLayout>
