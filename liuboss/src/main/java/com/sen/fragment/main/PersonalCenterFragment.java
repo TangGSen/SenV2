@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.sen.base.BaseFragment;
 import com.sen.liuboss.R;
@@ -34,8 +34,9 @@ public class PersonalCenterFragment extends BaseFragment {
         rootLayoutParams.setMargins(0, ResourcesUtils.getStatusBarHeight(getContext()), 0, 0);
         personal_rootLayout.setLayoutParams(rootLayoutParams);
 
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(0, (int) (getTabLayoutHeight()*1.5), 0, 0);
+
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) img_user.getLayoutParams();
+        lp.setMargins(0, (int) (getTabLayoutHeight()*1.6), 0, 0);
         img_user.setLayoutParams(lp);
     }
 
